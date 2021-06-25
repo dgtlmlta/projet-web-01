@@ -1,0 +1,21 @@
+{% include("includes/header.twig") %}
+
+	<main>
+		<form action="login/authenticateUser" name="loginForm" method="post">
+			<div class="field-block">
+				<label for="inputUser">Courriel&nbsp;: </label>
+				<input type="text" name="username" id="inputUser" required>
+			</div>
+
+			<div class="field-block">
+				<label for="inputPassword">Mot de passe&nbsp;:</label>
+				<input type="password" name="password" id="inputPassword" required>
+			</div>
+
+			<div>
+				<button type="submit">S'authentifier</button>
+			</div>
+		</form>
+	</main>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<div class="grid">
+	{% for xpet in xpets %}
+	<article>
+		<h3><a href="{{ constant("\\XPetsIntl\\ROOTDIR") }}xpets/{{ xpet.id }}/{{ xpet.slug }}">{{ xpet.name }}</a></h3>
+		<span class="animal-class aninalClass-id-{{ xpet.classId }}">{{ xpet.class }}</span>
+		{% if xpet.imageUrl is not empty %}
+		<picture>
+			<img src="{{ constant("\\XPetsIntl\\ROOTDIR") ~ xpet.imageUrl }}" alt="">
+		</picture>
+		{% endif %}
+		<dl>
+			<dt>Affiliation : </dt>
+			<dd><a href="{{ constant("\\XPetsIntl\\ROOTDIR") }}teams/{{ xpet.teamId }}/{{ xpet.teamSlug }}">{{ xpet.teamName }}</a></dd>
+
+			<dt>Superpouvoir : </dt>
+			<dd><a href="{{ constant("\\XPetsIntl\\ROOTDIR") }}superpowers/{{ xpet.superpowerId }}/{{ xpet.superpowerSlug }}">{{ xpet.superpowerName }}</a></dd>
+
+			<dt>Description : </dt>
+			<dd>{{ xpet.description }}</dd>
+		</dl>
+		{% if canEdit %}
+		<a class="cta" href="{{ constant("\\XPetsIntl\\ROOTDIR") }}xpets/formulaire/{{ xpet.id }}">Mettre à jour</a>
+		{% endif %}
+	</article>				
+	{% endfor %}
+</div>

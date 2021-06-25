@@ -1,0 +1,22 @@
+{% include "includes/header.twig" %}
+
+		<a href="{{ constant("\\XPetsIntl\\ROOTDIR") ~ controllerSlug }}">&lt;- Retour à la liste des {{ entryLabelTextPlur }}</a>
+		<h1>{{ entry.name }}</h1>
+		<p>{{ entry.description }}</p>
+		{% if canEdit %}
+		<a class="cta" href="{{ constant("\\XPetsIntl\\ROOTDIR") ~ controllerSlug }}/formulaire/{{ entry.id }}">Mettre à jour</a>
+		{% endif %}
+	</header>
+	
+	<main>
+		<section class="animal-listing">
+			<h2>{{ animalsTitleText }}</h2>
+			{% if xpets is not empty %}
+			{% include "includes/xpets-grid.twig" %}
+			{% else %}
+			<span>Aucun membre dans cet équipe</span>
+			{% endif %}
+		 </section>
+	</main>
+</body>
+</html>

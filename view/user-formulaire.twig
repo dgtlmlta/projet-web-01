@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Formulaire d'enregistrement :: X-Pets - Adoption d'animaux avec superpouvoirs</title>
+	<meta name="description" content="Formulaire permettant d'enregistrer ou mettre à jour une fiche animal dans la base de données de l'institution">
+
+	<!-- Fonts -->
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="{{ constant("\\XPetsIntl\\ROOTDIR") }}styles/main.css">
+
+</head>
+
+<body>
+	<header>
+		<h1>{{ headerText }}</h1>
+	</header>
+	<main>
+		<form action="user/updateUser" name="userForm" method="post">
+			<div class="field-block">
+				<label for="inputFirstName">Prénom : </label>
+				<input type="text" name="firstName" id="inputFirstName" maxlength="45" required>
+			</div>
+			<div class="field-block">
+				<label for="inputLastName">Nom&nbsp;: </label>
+				<input type="text" name="lastName" id="inputLastName" maxlength="45" required>
+			</div>
+			<div class="field-block">
+				<label for="inputEmail">Courriel&nbsp;: </label>
+				<input type="email" name="email" id="inputEmail" required>
+			</div>
+			<div class="field-block">
+				<label for="inputPassword">Mot de passe&nbsp;:</label>
+				<input type="password" name="password" id="inputPassword" required>
+			</div>
+			<div class="field-block">
+				<label for="selectRole">Rôle&nbsp;:</label>
+				<select name="roleId" id="selectRole">
+					{% for role in roles %}
+					<option value="{{ role.id }}">{{ role.name }}</option>
+					{% endfor %}
+				</select>
+			</div>
+
+			<div>
+				<button type="submit">{{ action }}</button>
+			</div>
+		</form>
+	</main>
+</body>
+</html>

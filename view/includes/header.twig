@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>{{ entryLabelTextPlur|capitalize }} :: X-Pets - Adoption d'animaux avec superpouvoirs</title>
+	<meta name="description" content="Portail d'accueil de X-Pets, un centre d'hébergement et d'adoption pour animaux mutants">
+
+	<!-- Fonts -->
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="{{ constant("\\XPetsIntl\\ROOTDIR") }}styles/main.css">
+
+</head>
+
+<body>
+	<header>
+		{% if not isLoggedIn %}
+		{{ isLoggedIn }}
+		<a href="{{ constant("\\XPetsIntl\\ROOTDIR") }}login">S'authentifier</a>
+		{% else %}
+		<span>Bienvenue, {{ userFirstName }}&nbsp;!</span>
+		<a href="{{ constant("\\XPetsIntl\\ROOTDIR") }}logout">Fermer la session</a>
+		{% endif %}

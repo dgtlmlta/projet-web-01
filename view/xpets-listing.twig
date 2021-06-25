@@ -1,0 +1,27 @@
+{% include "includes/header.twig" %}
+	
+		<h1>Bienvenue chez Xpets Intl. !</h1>
+		<span class="tagline">Notre mission, trouver votre meilleur ami !</span>
+		
+		<nav>
+			<a class="cta" href="{{ constant("\\XPetsIntl\\ROOTDIR") }}teams">Voir les équipes</a>
+			<a class="cta" href="{{ constant("\\XPetsIntl\\ROOTDIR") }}classes">Voir les classes</a>
+			<a class="cta" href="{{ constant("\\XPetsIntl\\ROOTDIR") }}superpowers">Voir les superpouvoirs</a>
+		</nav>
+	</header>
+	
+	<main>
+		<section class="animal-listing">
+			<h2>Nos animaux</h2>
+			
+			{% include "includes/xpets-grid.twig" %}
+			
+		</section>
+		{% if canEdit %}
+		<div class="actions">
+			<a class="cta" href="{{ constant("\\XPetsIntl\\ROOTDIR") }}xpets/formulaire">Ajouter un animal</a>
+		</div>
+		{% endif %}
+	</main>
+</body>
+</html>
