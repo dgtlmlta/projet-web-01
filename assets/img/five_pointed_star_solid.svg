@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- 
+	Étoile pour les favoris
+	Source: https://upload.wikimedia.org/wikipedia/commons/1/18/Five-pointed_star.svg
+-->
+<svg xmlns="http://www.w3.org/2000/svg" >
+	<title>Five Pointed Star</title>
+	
+	<symbol id="fav-star" viewBox="0 0 51 48">
+		<path stroke-width="2" d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+	</symbol>
+</svg>

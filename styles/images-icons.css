@@ -1,0 +1,26 @@
+picture,
+img {
+	display: block;
+}
+
+.hero {
+	background-image: url(../assets/img/close-up-of-stamps-collection-and-magnifying-glass.jpg);
+	background-size: cover;
+	background-position: left 0 top 12%;
+}
+
+.hero .ornement {
+	width: 100%;
+}
+
+.hero .ornement-bottom {
+	transform: rotate(180deg);
+}
+
+
+
+
+/* Icônes */
+.right-arrow {
+	transform: rotate(-90deg);
+}

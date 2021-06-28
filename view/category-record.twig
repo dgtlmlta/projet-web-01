@@ -1,10 +1,10 @@
 {% include "includes/header.twig" %}
 
-		<a href="{{ constant("\\XPetsIntl\\ROOTDIR") ~ controllerSlug }}">&lt;- Retour à la liste des {{ entryLabelTextPlur }}</a>
+		<a href="{{ constant("\\Stampee\\ROOTDIR") ~ controllerSlug }}">&lt;- Retour à la liste des {{ entryLabelTextPlur }}</a>
 		<h1>{{ entry.name }}</h1>
 		<p>{{ entry.description }}</p>
 		{% if canEdit %}
-		<a class="cta" href="{{ constant("\\XPetsIntl\\ROOTDIR") ~ controllerSlug }}/formulaire/{{ entry.id }}">Mettre à jour</a>
+		<a class="cta" href="{{ constant("\\Stampee\\ROOTDIR") ~ controllerSlug }}/formulaire/{{ entry.id }}">Mettre à jour</a>
 		{% endif %}
 	</header>
 	

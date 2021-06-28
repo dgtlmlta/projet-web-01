@@ -1,6 +1,6 @@
 <?php
 
-	namespace XPetsIntl;
+	namespace Stampee;
 
 	class SuperpowerDAO extends Gateway {
 		protected $table = "superpower";

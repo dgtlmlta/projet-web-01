@@ -1,0 +1,75 @@
+:root {
+	--gutterGiga: calc(var(--gutter) * 6);
+	--gutterMega: calc(var(--gutter) * 4);
+	--gutterKilo: calc(var(--gutter) * 3);
+	--gutterHecto: calc(var(--gutter) * 2);
+	--gutterDeca: calc(var(--gutter) * 1.5);
+	--gutter: 1rem;
+	--gutterDeci: calc(var(--gutter) * .75);
+	--gutterCenti: calc(var(--gutter) * .5);
+	--gutterMilli: calc(var(--gutter) * .333);
+
+	/* Espacement et structure */
+	--vPadding-fields: 4px;
+	--hPadding-fields: 16px;
+	--hPadding-buttons: 1.2em;
+
+	--content-width: 80%;
+	--content-max-width: 1400px;
+	--content-padding: var(--gutterKilo);
+}
+
+/* Réinitialisations :::::::::: */
+* {
+	padding: 0;
+	margin: 0;
+
+	box-sizing: border-box;
+}
+
+
+.flow-content-centi > * + * {
+	margin-top: var(--gutterCenti);
+}
+
+.flow-content > * + * {
+	margin-top: var(--gutter);
+}
+
+.flow-content-kilo > * + * {
+	margin-top: var(--gutterKilo);
+}
+
+:is(
+	.flow-content-giga,
+	main
+) > * + * {
+	margin-top: var(--gutterGiga);
+}
+
+* + li {
+	margin-top: calc(var(--gutter) * 0.7);
+}
+
+:not(button) > img {
+	max-width: 100%;
+	display: block;
+
+	object-fit: cover;
+}
+
+.content {
+	padding-inline: var(--content-padding);
+}
+
+
+main {
+	padding-block: var(--gutterKilo);
+}
+
+p {
+	max-width: 50ch;
+	margin-inline: auto;
+	break-inside: avoid;
+
+}

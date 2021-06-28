@@ -1,6 +1,6 @@
 <?php 
 
-	namespace XPetsIntl;
+	namespace Stampee;
 
 	FileManager::model("Gateway");
 	FileManager::model("XpetDAO");

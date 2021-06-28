@@ -1,6 +1,6 @@
 <?php 
 
-	namespace XPetsIntl;
+	namespace Stampee;
 
 	class ClassDAO extends Gateway {
 		protected $table = "class";

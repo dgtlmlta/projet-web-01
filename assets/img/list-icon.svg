@@ -1,0 +1,10 @@
+<!--
+	Icône pour le bouton d'affichage en liste
+	Auteur: Gregor Cresnar
+	Source: https://thenounproject.com/search/?q=list&i=1015747
+-->
+<svg xmlns="http://www.w3.org/2000/svg">
+	<symbol id="list-icon" viewBox="0 0 90 84">
+		<path d="M0,75a9,9,0,1,1,9,9A9,9,0,0,1,0,75ZM9,18A9,9,0,1,0,0,9,9,9,0,0,0,9,18ZM9,51a9,9,0,1,0-9-9A9,9,0,0,0,9,51ZM39,15H84A6,6,0,0,0,84,3H39a6,6,0,0,0,0,12Zm0,33H84a6,6,0,0,0,0-12H39a6,6,0,0,0,0,12Zm0,33H84a6,6,0,0,0,0-12H39a6,6,0,0,0,0,12Z"/>
+	</symbol>
+</svg>

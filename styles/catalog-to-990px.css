@@ -1,0 +1,51 @@
+/* Adaptation pour la tablette */
+.catalog-panel {
+	position: relative;
+}
+
+.filters-bar {
+	position: absolute;
+	left: calc(-1 * (var(--content-padding) + 200px));
+	z-index: 10;
+
+	width: 200px;
+}
+
+.filters-bar form {
+	position: sticky;
+	top: -20px;
+}
+.filters-bar label {
+	padding-block: var(--gutterCenti);
+}
+
+.show-filters-bar {
+	left: 0;
+}
+
+.show-filters-button {
+	display: block;
+
+	position: absolute;
+	right: -38px;
+	top: 50%;
+}
+
+.show-filters-button button span {
+	display: flex;
+	align-items: center;
+
+	writing-mode: vertical-lr;
+}
+
+.show-filters-button button:active {
+	transform: none;
+}
+
+.catalog-panel .toolbar {
+	flex-wrap: wrap;
+}
+
+.catalog-panel .search {
+	max-width: initial;
+}

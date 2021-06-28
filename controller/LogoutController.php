@@ -1,5 +1,5 @@
 <?php 
-	namespace XPetsIntl;
+	namespace Stampee;
 
 	class LogoutController {
 			

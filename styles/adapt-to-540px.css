@@ -1,0 +1,14 @@
+/* Adaptation pour les petits écrans */
+:root {
+	/* Échelonnement de la taille de police */
+	--font-scale: var(--major-second);
+}
+
+/* Navigation principale ++++++++ */
+.bottom-nav-icon {
+	height: auto;
+}
+
+.mobile-nav-label {
+	display: none;
+}

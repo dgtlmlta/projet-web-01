@@ -1,0 +1,97 @@
+:root {
+	/* https://type-scale.com */
+	--augmented-fourth: 1.414;
+	--major-third: 1.250;
+	--major-second: 1.125;
+	
+	--font-size-initial: 1rem;
+	--font-base: 1vw;
+	--font-scale: var(--augmented-fourth);
+	
+	--scaling-mega: calc(var(--font-scale) * var(--font-scale) * var(--font-scale) * var(--font-scale) * var(--font-scale));
+	--scaling-kilo: calc(var(--font-scale) * var(--font-scale) * var(--font-scale) * var(--font-scale));
+	--scaling-hecto: calc(var(--font-scale) * var(--font-scale) * var(--font-scale));
+	--scaling-deca: calc(var(--font-scale) * var(--font-scale));
+
+	--font-scaling-mega: clamp(
+		var(--font-size-initial) * var(--scaling-mega) / var(--font-scale),
+		var(--font-base) * var(--scaling-mega) / var(--font-scale),
+		var(--font-size-initial) * var(--scaling-mega)
+	);
+
+	--font-scaling-kilo: clamp(
+		var(--font-size-initial) * var(--scaling-kilo) / var(--font-scale),
+		var(--font-base) * var(--scaling-kilo) / var(--font-scale),
+		var(--font-size-initial) * var(--scaling-kilo)
+	);
+
+	--font-scaling-hecto: clamp(
+		var(--font-size-initial) * var(--scaling-hecto) / var(--font-scale),
+		var(--font-base) * var(--scaling-hecto) / var(--font-scale),
+		var(--font-size-initial) * var(--scaling-hecto)
+	);
+
+	--font-scaling-deca: clamp(
+		var(--font-size-initial) * var(--scaling-deca) / var(--font-scale),
+		var(--font-base) * var(--scaling-deca) / var(--font-scale),
+		var(--font-size-initial) * var(--scaling-deca)
+	);
+
+	--font-scaling-base: clamp(
+		var(--font-size-initial),
+		var(--font-base) * var(--font-scale),
+		var(--font-size-initial) * var(--font-scale)
+	);
+
+	--font-scaling-deci: clamp(
+		var(--font-size-initial) / var(--scaling-deca) * var(--font-scale),
+		var(--font-base) / var(--scaling-deca) * var(--font-scale),
+		var(--font-size-initial) / var(--scaling-deca) * var(--font-scale)
+	);
+	
+	--font-scaling-centi: 0.7em;
+	--font-scaling-milli: 0.5em;
+}
+
+/* Taille de caractères et hauteur de ligne */
+html {
+	font-size: var(--font-scaling-base);
+	line-height: 1.7625;
+}
+
+h1 {
+	font-size: var(--font-scaling-mega);
+	/* font-size: clamp(
+		var(--font-size-initial) * var(--fontScalingMega) / var(--font-scale),
+		var(--font-base) * var(--fontScalingMega) / var(--font-scale),
+		var(--font-size-initial) * var(--fontScalingMega)); */
+	line-height: 1.15em;
+
+	max-width: 25ch;
+}
+
+h2,
+.hero h1 {
+	font-size: var(--font-scaling-kilo);
+	line-height: 1.025em;
+}
+
+h3 { 
+	font-size: var(--font-scaling-deca);
+	line-height: 1.1em;
+}
+
+h4 {
+	font-size: var(--fontScalingBase);
+}
+
+
+/* Familles de polices */
+body {
+	font-family: Montserrat, proxima-nova, sans-serif;
+}
+
+h1, h2, h3, h4,
+.hero div {
+	font-family: Lora, serif;
+}

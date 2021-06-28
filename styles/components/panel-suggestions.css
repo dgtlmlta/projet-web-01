@@ -1,0 +1,5 @@
+.panel-suggestions .grid {	
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(var(--card-min-size), 1fr));
+	gap: var(--gutterHecto);
+}

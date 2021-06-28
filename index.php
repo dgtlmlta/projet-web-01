@@ -1,13 +1,11 @@
 <?php
-	namespace XPetsIntl;
+	namespace Stampee;
 
 	session_start();
 
 	define("NS", __NAMESPACE__ . "\\");
 	// Pour les require et include.
 	define(NS . "ROOTPATH", __DIR__ . "/");
-	// Pour la navigation et les src.
-	define(NS . "ROOTDIR", "/");
 	// Fingerprinting
 	define(__NAMESPACE__ . "\SECRET_SPICE", md5($_SERVER['HTTP_USER_AGENT'] . $_SERVER["REMOTE_ADDR"] . "--éé--"));
 	
@@ -18,12 +16,6 @@
 	FileManager::lib("SessionManager");
 	FileManager::model("LogDAO");
 
-	//recuperer le chemin (URL) et mettre dans un tableau
-	if(substr($_SERVER["REQUEST_URI"], 0, strlen(ROOTDIR)) == ROOTDIR) {
-		$slug = substr($_SERVER["REQUEST_URI"], strlen(ROOTDIR));
-	}
-
-	
 	
 	$uid = (isset($_SESSION["userId"])) ?
 		$_SESSION["userId"] :
@@ -31,14 +23,29 @@
 
 	// Enregistrement dans le journal
 	$logDAO = new LogDAO();
-	$logDAO->storeAccessLog($slug, $_SERVER["REMOTE_ADDR"], $uid);
+	$logDAO->storeAccessLog($_SERVER["REQUEST_URI"], $_SERVER["REMOTE_ADDR"], $uid);
 
-	$url = (explode('/', $slug)[0] != "") ?
-		explode('/', $slug) :
+	//recuperer le chemin (URL) et mettre dans un tableau
+	$url = (isset($_SERVER["REQUEST_URI"]) && $_SERVER["REQUEST_URI"] != "/") ?
+		explode('/', $_SERVER["REQUEST_URI"]) :
 		"/";
 
+	/* $url = (explode('/', $_SERVER["REQUEST_URI"])[0] != "") ?
+		explode('/', $slug) :
+		"/"; */
+
 	if($url == "/"){
-		FileManager::redirect();
+		echo TwigController::render(
+			"index",
+			[
+				// Texte Header
+				"pageTitle" => "Bienvenue - accueil",
+				"pageDescription" => "Accueil du portail de vente aux enchères de Lord Stampee",
+
+				// Définir le type de page
+				"pageType" => "index"
+			]
+		);
 	} else{
 		if(!(strpos($slug, "login") === 0)) {
 			$_SESSION["referer"] = $slug;

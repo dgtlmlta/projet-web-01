@@ -1,0 +1,56 @@
+.filters-bar {
+	padding: var(--gutter);
+	
+	border-radius: var(--radius);
+
+	background-color: var(--beige);
+	box-shadow: var(--shadow);
+
+	--marker-color: var(--beige-dark);
+
+
+	transition-property: left;
+	transition-duration: var(--anim-duration-fast);
+}
+
+.filters-bar fieldset {
+	min-width: 0;
+	padding: var(--gutterCenti);
+	padding-block-end: var(--gutter);
+	border: none;
+	border-bottom: 1px solid var(--grey);
+}
+
+.filters-bar summary::marker {
+	color: var(--marker-color);
+}
+
+.filters-bar legend {
+	display: inline-block;
+}
+
+.filters-bar .inputs {
+	padding-inline-start: var(--gutterCenti);
+	margin-top: var(--gutterCenti);
+}
+
+.filters-bar .inputs > * + * {
+	margin-top: var(--gutterCenti);
+}
+
+.filters-bar .more-info {
+	font-size: var(--font-scaling-centi);
+}
+
+.filters-bar label {
+	display: block;
+}
+
+.filters-bar input {
+	max-width: 100%;
+	background-color: var(--beige-light);
+}
+
+.filters-bar .filters-actions > * + *{
+	margin-top: var(--gutterCenti);
+}

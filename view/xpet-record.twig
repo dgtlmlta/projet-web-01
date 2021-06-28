@@ -1,5 +1,5 @@
 {% include "includes/header.twig" %}
-		<a href="{{ constant("\\XPetsIntl\\ROOTDIR") }}xpets">&lt;- Retour à la liste des animaux</a>
+		<a href="{{ constant("\\Stampee\\ROOTDIR") }}xpets">&lt;- Retour à la liste des animaux</a>
 		<h1>{{ xpet.name }}</h1>
 	</header>
 	
@@ -13,16 +13,16 @@
 			{% endif %}
 			<dl>
 				<dt>Affiliation : </dt>
-				<dd><a href="{{ constant("\\XPetsIntl\\ROOTDIR") }}teams/{{ xpet.teamId }}/{{ xpet.teamSlug }}">{{ xpet.teamName }}</a></dd>
+				<dd><a href="{{ constant("\\Stampee\\ROOTDIR") }}teams/{{ xpet.teamId }}/{{ xpet.teamSlug }}">{{ xpet.teamName }}</a></dd>
 
 				<dt>Superpouvoir : </dt>
-				<dd><a href="{{ constant("\\XPetsIntl\\ROOTDIR") }}superpowers/{{ xpet.superpowerId }}/{{ xpet.superpowerSlug }}">{{ xpet.superpowerName }}</a></dd>
+				<dd><a href="{{ constant("\\Stampee\\ROOTDIR") }}superpowers/{{ xpet.superpowerId }}/{{ xpet.superpowerSlug }}">{{ xpet.superpowerName }}</a></dd>
 
 				<dt>Description : </dt>
 				<dd>{{ xpet.description }}</dd>
 			</dl>
 			{% if canEdit %}
-			<a class="cta" href="{{ constant("\\XPetsIntl\\ROOTDIR") }}xpets/formulaire/{{ xpet.id }}">Mettre à jour</a>
+			<a class="cta" href="{{ constant("\\Stampee\\ROOTDIR") }}xpets/formulaire/{{ xpet.id }}">Mettre à jour</a>
 			{% endif %}
 		</article>		
 	</main>

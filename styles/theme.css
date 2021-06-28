@@ -1,0 +1,151 @@
+/* Variables ++++ */
+:root {
+
+	/* Couleurs */
+	--black-overlay: hsla(0, 0%, 0%, 0.08);
+	--white-overlay: hsla(0, 0%, 100%, 0.1);
+
+	--blue-primary-dark: hsl(215, 67%, 12%);
+	--blue-primary: hsl(215, 38%, 25%);
+	--blue-overlay-dark: hsla(215, 68%, 12%, 0.85);
+
+	--purple-primary-dark: hsl(325, 96%, 12%);
+	--purple-overlay-dark: hsla(325, 96%, 12%, 0.7);
+
+	--beige-light: hsl(50, 30%, 98%);
+	--beige: hsl(50, 25%, 92%);
+	--beige-dark: hsl(50, 25%, 50%);
+
+	--grey: hsl(0, 0%, 35%);
+	--grey-light: hsl(0, 0%, 95%);
+
+
+	/* Ombrages */
+	--shadow:
+		0px 1px 2px 0px hsla(0, 0%, 0%, 0.2),
+		0px 0px 2px 0px hsla(0, 0%, 0%, 0.1);
+
+	/* Animations */
+	--anim-duration-snap: 100ms;
+	--anim-duration-fast: 200ms;
+	--anim-duration-normal: 300ms;
+
+	/* Radius */
+	--radius-deca: 6px;
+	--radius: 4px;
+	--radius-deci: 2px;
+}
+
+/* Réinitialisations  :::::::::: */
+ol,
+ul {
+	list-style-type: none;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+/* Réinitialiser les boutons appertenant au menu principal */
+.click-menu li > button {
+	color: currentColor;
+	
+	border: none;
+	background-color: transparent;
+}
+
+svg {
+	fill: currentColor;
+	stroke: currentColor;
+}
+
+
+
+body {
+	background-color: var(--beige-light);
+}
+
+input,
+select {
+	background-color: var(--beige);
+}
+
+
+
+/* En-tête hero */
+.hero {
+	color: var(--grey-light);
+}
+
+.hero .blue-overlay {
+	background-color: var(--blue-overlay-dark);	
+}
+
+
+
+/* Menu principal */
+[class^="primary-navigation"] {
+	color: var(--grey-light);
+}
+
+
+[class^="primary-navigation"],
+[class^="primary-navigation"] li {
+	background-color: var(--blue-primary-dark);
+}
+
+
+/* Fil d'Ariane */
+.breadcrumb [aria-current="page"] {
+	color: var(--grey);
+}
+
+.breadcrumb .separator {
+	font-weight: 700;
+	color: var(--purple-primary-dark);
+}
+
+/* Boutons et CTA ++++ */
+
+.cta {
+	border: 2px solid var(--blue-primary-dark);
+	background-color: transparent;
+	color: var(--blue-primary-dark);
+	/* background-color: var(--blue-primary-dark);
+	color: var(--grey-light); */
+}
+
+:where(main) button {
+	color: var(--grey-light);
+}
+
+/* Champ de recherche */
+.search-box button {
+	color: var(--grey-light);
+}
+
+/* Bouton favoris */
+.toggle-favorite svg {
+	stroke: var(--purple-primary-dark); 
+	fill: var(--purple-primary-dark);
+}
+
+
+/* Petites étiquettes */
+.lords-pick {
+	background-color: var(--purple-primary-dark);
+	color: var(--grey-light);
+}
+
+
+
+/* Encadrés beige */
+.beige-box {
+	padding: var(--gutter);
+	
+	border-radius: var(--radius);
+
+	background-color: var(--beige);
+	box-shadow: var(--shadow);
+}

@@ -1,5 +1,5 @@
 {% include "includes/header.twig" %}
-		<a href="{{ constant("\\XPetsIntl\\ROOTDIR") }}xpets">&lt;- Retour à la liste des animaux</a>
+		<a href="{{ constant("\\Stampee\\ROOTDIR") }}xpets">&lt;- Retour à la liste des animaux</a>
 		<h1>Les {{ entryLabelTextPlur }} X-Pets</h1>
 	</header>
 	
@@ -11,9 +11,9 @@
 			<ul>
 				{% for entry in entries %}
 				<li>
-					<a href="{{ constant("\\XPetsIntl\\ROOTDIR") ~ controllerSlug ~ "/" ~ entry.id ~ "/" ~ entry.slug }}">{{ entry.name }}</a>
+					<a href="{{ constant("\\Stampee\\ROOTDIR") ~ controllerSlug ~ "/" ~ entry.id ~ "/" ~ entry.slug }}">{{ entry.name }}</a>
 					{% if canEdit %}
-					<a href="{{ constant("\\XPetsIntl\\ROOTDIR") ~ controllerSlug }}/formulaire/{{ entry.id }}">Mettre à jour</a>
+					<a href="{{ constant("\\Stampee\\ROOTDIR") ~ controllerSlug }}/formulaire/{{ entry.id }}">Mettre à jour</a>
 					{% endif %}
 				</li>
 				{% endfor %}
@@ -24,7 +24,7 @@
 		</section>
 
 		{% if canEdit %}
-		<a class="cta" href="{{ constant("\\XPetsIntl\\ROOTDIR") ~ controllerSlug }}/formulaire">Ajouter une {{ entryLabelTextSing }}</a>
+		<a class="cta" href="{{ constant("\\Stampee\\ROOTDIR") ~ controllerSlug }}/formulaire">Ajouter une {{ entryLabelTextSing }}</a>
 		{% endif %}
 	</main>
 </body>

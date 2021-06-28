@@ -1,0 +1,54 @@
+@import url("components/click-menu.css");
+
+:root {
+	--breadcrumb-gap: var(--gutterCenti);
+}
+
+[aria-label="Primary navigation"] .search-box button {
+	background-color: var(--blue-primary);
+}
+
+[aria-label="Primary navigation"] .search-box button:hover {
+	background-color: var(--purple-primary-dark);
+}
+
+[aria-label="Primary navigation"] .mobile {
+	display: none;
+}
+
+
+
+/* Fil d'Ariane */
+.breadcrumb {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--breadcrumb-gap);
+}
+
+.breadcrumb-level {
+	display: flex;
+	align-items: center;
+	gap: var(--breadcrumb-gap);
+}
+
+.breadcrumb > span {
+	max-width: 30ch;
+
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow-x: hidden;
+}
+
+.breadcrumb a {
+	text-decoration: underline;
+	text-underline-offset: 4px;
+}
+
+.breadcrumb [aria-current="page"] {
+	color: var(--grey);
+}
+
+.breadcrumb .separator {
+	transform: rotate(-90deg);
+}

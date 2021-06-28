@@ -1,0 +1,127 @@
+/* Configuration du composant */
+.click-menu {
+	--hPadding-top-level: var(--gutter);
+	--vPadding-top-level: var(--gutterCenti);
+
+	/* Couleurs */
+	--action-hover-bg-color: var(--purple-primary-dark); /* Couleur de d'arrière-plan au survol des zones d'action */
+
+
+	/* Animations */
+	--transition-speed: var(--anim-duration-fast);
+
+	
+}
+
+
+
+/* Réinitialiser, à titre préventif, le rythme vertical à 0 pour les éléments du menu */
+.click-menu * + * {
+	margin-top: 0;
+}
+
+.click-menu {
+	display: flex;
+	justify-content: space-between;
+}
+
+.click-menu > * {
+	position: relative;
+}
+
+.click-menu a {
+	display: block;
+}
+
+.click-menu ul {
+	position: absolute;
+	min-width: max-content;
+	width: 100%;
+}
+
+/* Positionnement des sous-menus */
+.click-menu.sub-on-bottom ul {
+	top: 100%;
+}
+
+.click-menu.sub-on-top ul {
+	bottom: 100%;
+}
+
+.click-menu .top-level-action {
+	text-align: center;
+}
+
+.click-menu button.top-level-action {
+	display: flex;
+	align-items: center;
+	gap: var(--gutterMilli);
+}
+
+.click-menu :is(.top-level-action, a) {	
+	width: 100%;
+	height: 100%;
+
+	text-align: left;
+}
+
+.click-menu :is(.top-level-action, a),
+.click-menu .no-action-item {
+	padding: var(--vPadding-top-level) var(--hPadding-top-level);
+}
+
+.click-menu button {
+	cursor: pointer;
+}
+
+/* Colorer l'élément de la page courante */
+.click-menu [aria-current="page"] {
+	background-color: var(--action-hover-bg-color);
+}
+
+
+
+/* Interactivité */
+
+/* Initialisation des paramètres d'animation */
+.click-menu :is(.top-level-action, a, ul, .down-arrow) {
+	transition-duration: var(--transition-speed);
+}
+
+.click-menu ul {
+	transition-property: opacity;
+}
+
+.click-menu .down-arrow {
+	transition-property: transform;	
+}
+
+.click-menu :is(.top-level-action, a) {
+	transition-property: background-color;
+}
+
+
+
+
+/* Sous-menus */
+.click-menu [aria-expanded="false"] ul {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.click-menu [aria-expanded="true"] ul,
+.click-menu [aria-expanded] ul:focus-within {
+	opacity: 1;
+	pointer-events: all;
+}
+
+
+/* Icônes flèches */
+.click-menu [aria-expanded="true"] .down-arrow {
+	transform: rotate(180deg);
+}
+
+.click-menu :is(.top-level-action, a):hover,
+.click-menu :is(.top-level-action, a):focus {
+	background-color: var(--action-hover-bg-color);
+}

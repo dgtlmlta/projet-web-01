@@ -1,0 +1,38 @@
+/* Adaptation pour la tablette */
+:root {
+	--vPadding-fields: var(--gutter);
+
+	/* Marge de sécurité du contenu */
+	--content-padding: var(--gutterDeca);
+
+	/* Échelonnement de la taille de police */
+	--font-scale: var(--major-third);
+}
+
+
+:is(.flow-content-giga, main) > * + * {
+	margin-top: var(--gutterKilo);
+}
+
+main {
+	padding-block-end: calc(var(--gutterKilo) + var(--bottom-bar-height));
+}
+
+.primary-navigation {
+	display: none;
+}
+
+.primary-navigation-mobile {
+	display: block;
+}
+
+.menu-wrapper,
+.click-menu {
+	height: 100%;
+}
+
+/* fin navigation principale */
+
+.hero .blue-overlay {
+	margin-inline: auto;
+}

@@ -1,5 +1,5 @@
 <?php 
-	namespace XPetsIntl;
+	namespace Stampee;
 
 	abstract class DbConnect {
 
@@ -10,7 +10,7 @@
 
 		public function __construct() {
 			$this->hostname = "localhost";
-			$this->database = "stampee";
+			$this->database = "xpets";
 			$this->username = "stamper";
 			$this->password = "stampino";
 			

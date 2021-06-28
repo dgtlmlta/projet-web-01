@@ -1,0 +1,67 @@
+/* Dépendances */
+@import url("components/filters-bar.css");
+
+.catalog-panel {
+	display: flex;
+	gap: var(--gutterKilo);
+}
+
+.filters-bar {
+	flex-basis: 20%;
+	align-self: flex-start;
+}
+
+.show-filters-button {
+	display: none;
+}
+
+.catalog-panel .toolbar {
+	display: flex;
+	justify-content: space-between;
+	gap: var(--gutter);
+}
+
+.catalog-panel .toolbar > * {
+	flex-basis: calc(100% / 3);
+	flex-grow: 1;
+}
+
+.catalog-panel .search {
+	max-width: 35ch;
+}
+
+.catalog-panel .grid-display-options {
+	display: flex;
+	align-items: center;
+	gap: var(--gutterMilli);
+}
+
+.catalog-panel .toolbar label {
+	display: block;
+	font-size: var(--font-scaling-centi);
+}
+
+.catalog-panel .toolbar input {
+	background-color: var(--beige);
+}
+
+
+.catalog-panel .search-box {
+	margin-top: 0;
+}
+
+.item-listing {
+	flex-grow: 1;
+}
+
+.item-listing.grid-view .grid {	
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(var(--card-min-size), 1fr));
+	gap: var(--gutterHecto);
+}
+
+
+/* Visionnement en grille */
+.grid-view .lot-card .description {
+	display: none;
+}

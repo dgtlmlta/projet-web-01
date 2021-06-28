@@ -1,6 +1,6 @@
 <?php 
 
-	namespace XPetsIntl;
+	namespace Stampee;
 
 	require_once("DbConnect.php");
 

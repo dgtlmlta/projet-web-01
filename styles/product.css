@@ -1,0 +1,121 @@
+:root {
+	--grid-gap: var(--gutterHecto);
+}
+
+.product {
+	margin-bottom: var(--gutterKilo);
+}
+
+
+
+/* Grille principale */
+.product-grid {
+	display: grid;
+	grid:
+		"image	summary	bidding"
+		"image	details	bidding"
+		"...	details	bidding"
+		/ 1fr		2fr		1fr;
+	gap: var(--grid-gap);
+}
+
+.product-grid .panel-main-image {
+	grid-area: image;
+}
+
+.product-grid .panel-summary {
+	grid-area: summary;
+}
+
+.product-grid .panel-stamp-details {
+	grid-area: details;
+}
+
+.product-grid .panel-bidding {
+	grid-area: bidding;
+}
+
+.product-grid .panel-suggestions {
+	grid-area: sugg;
+}
+
+
+
+
+
+.product .panel-main-image picture {
+	display: block;
+	position: relative;
+
+	border-radius: var(--radius);
+}
+
+.product .stamp-details {
+	column-count: 3;
+	column-gap: var(--gutter);
+	column-width: 12ch;
+}
+
+.product .stamp-details > * {
+	break-inside: avoid;
+}
+
+.product dt {
+	font-weight: 700;
+}
+
+.product .panel-bidding svg {
+	height: 1em;
+	width: auto;
+}
+
+.product .panel-faq {
+	margin-top: var(--gutterHecto);
+}
+
+.product .time-left {
+	display: flex;
+	align-items: center;
+	gap: var(--gutterMilli);
+
+	font-size: 1.2em;
+}
+
+.product .time-left > svg {
+	stroke: var(--purple-primary-dark);
+}
+
+.product .current-bid {
+	font-size: 1.2em;
+}
+
+.product .current-bid > span:first-child {
+	display: block;
+}
+
+.product .current-bid > span:last-child {
+	font-weight: 700;
+}
+
+.product .place-bid > div {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--gutterCenti);
+
+}
+
+.product .place-bid label {
+	display: block;
+}
+
+.product .place-bid input {
+	flex-basis: calc(100% / 3);
+	flex-grow: 1;
+
+	min-width: 10ch;
+}
+
+.product .place-bid button {
+	flex-shrink: 0;
+	flex-grow: 1;
+}

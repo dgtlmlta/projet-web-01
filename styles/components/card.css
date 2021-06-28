@@ -1,0 +1,135 @@
+/* Variables */
+:root {
+
+	--card-grid-image-height: 300px; /* Hauteur que la photo du timbre doit prendre en mode grille */
+
+	--card-min-size: 320px;
+}
+
+/* Cartes */
+.lot-card {
+	display: flex;
+	flex-direction: column;
+
+	position: relative;	
+
+	min-height: 100%;
+
+	border-radius: var(--radius);
+	background-color: var(--beige);
+
+	box-shadow: var(--shadow);
+}
+
+.lot-card picture {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	height: var(--card-grid-image-height);
+	padding: var(--gutterCenti);
+
+	/* Empêcher l'élément picture de "bleeder" à l'extérieur en lui donnant un radius seulement sur les coins supérieurs */
+	border-top-left-radius: var(--radius);
+	border-top-right-radius: var(--radius);
+
+	background-color: var(--blue-primary-dark);
+}
+
+
+.lot-card picture > img {
+	max-height: 100%;
+}
+
+.lot-card .time-left {
+	display: flex;
+	align-items: center;
+	gap: var(--gutterMilli);
+
+	font-size: var(--font-scaling-centi);
+}
+
+.lot-card h3 {
+	margin-top: var(--gutterCenti);
+
+
+	/* N'afficher que deux lignes maximum pour uniformiser le format des cartes */
+	display: -webkit-box;
+	overflow: hidden;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	padding-bottom: 0.12em;
+
+	font-size: 1em;
+}
+
+.lot-card .info {
+	flex-grow: 1;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	padding: var(--gutterDeci);
+}
+
+.lot-card header {
+	flex-grow: 1;
+}
+
+.lot-card .toggle-favorite {	
+	height: 1.5em;
+
+	font-size: var(--font-scaling-centi);
+}
+
+.lot-card .favorite-icon {
+	width: auto;
+	height: 100%;
+}
+
+.lot-card .bidding-properties {
+	display: flex;
+	gap: var(--gutterCenti);
+}
+
+.lot-card .bidding-properties > * {
+	flex-basis: 50%;
+	flex-grow: 1;
+}
+
+.lot-card .bidding-properties > * > span:first-child {
+	font-size: var(--font-scaling-centi);
+}
+
+.lot-card .bidding-properties span {
+	display: block;
+}
+
+
+.lot-card .time-left > svg {
+	stroke: var(--purple-primary-dark);
+}
+
+.lot-card .bidding-properties span:last-of-type {
+	font-weight: 700;
+}
+
+.lot-card .card-actions > * + * {
+	margin-top: var(--gutterCenti);
+}
+
+.lot-card .tags-display {
+	position: absolute;
+	top: var(--gutter);
+	left: calc(-1 * var(--gutterCenti));
+}
+
+.lot-card .lords-pick {
+	padding: 4px 8px;
+	
+	border-radius: var(--radius);
+	font-size: 0.7em;
+
+	box-shadow: var(--shadow);
+}

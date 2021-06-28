@@ -1,0 +1,137 @@
+:root {
+	--vPadding-fields: var(--gutter);
+	--hPadding-fields: var(--gutterDeci);
+
+}
+/* Éléments de formulaire généraux */
+input,
+button,
+select,
+.cta {
+	padding-block: var(--vPadding-fields);
+	padding-inline: var(--hPadding-fields);
+	border-radius: var(--radius);
+}
+
+input,
+button,
+select {
+	border: none;
+	font-size: inherit;
+	font-family: inherit;
+}
+
+select {
+	width: 100%;
+}
+
+summary {
+	cursor: pointer;
+}
+
+::placeholder {
+	font-style: italic;
+}
+
+
+/* Liens et boutons */
+a.text-link {
+	text-decoration: underline;
+	font-weight: 500;
+}
+
+a.text-link:hover {
+	color: var(--purple-primary-dark);
+}
+
+button:not(.top-level-action),
+.cta {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: var(--gutterMilli);
+
+	width: 100%;
+	line-height: 1.25em;
+
+	text-align: center;
+}
+
+button:not(.top-level-action) {
+	background-color: var(--blue-primary-dark);
+}
+
+button.place-your-bid {
+	background-color: var(--blue-primary);
+}
+
+
+
+/* Champs de recherche */
+.search-box {
+	display: flex;
+	gap: var(--gutterMilli);
+
+	margin-top: var(--gutterCenti);
+}
+
+.search-box > input {
+	flex-grow: 1;
+}
+
+.search-box button {
+	display: flex;
+	align-items: center;
+	
+	width: 20%;
+	text-align: center;
+}
+
+button > svg {
+	max-height: 20px;
+	width: auto;
+}
+
+.toggle-favorite {
+	display: flex;
+	align-items: center;
+	gap: var(--gutterCenti);
+}
+
+
+/* Interactivité ++++ */
+
+
+/* Boutons et actions */
+button,
+.cta {
+	transition-property: transform, background-color;
+	transition-duration: var(--anim-duration-fast);
+}
+
+:where(:not(.click-menu > li)) > button:not(:disabled):active,
+.cta:active {
+	transform: translate(1px, 2px);
+}
+
+
+button:not(:disabled):hover,
+.cta:hover {
+	cursor: pointer;
+	background-color: var(--purple-primary-dark);
+	color: var(--grey-light);
+}
+
+button:disabled {
+	background-color: var(--purple-primary-dark);
+}
+
+/* Ajout / retrait des favoris */
+.toggle-favorite svg {
+	transition-property: fill;
+	transition-duration: 800ms; /* var(--anim-duration-normal); */
+}
+
+.toggle-favorite input:not(:checked) ~ svg {
+	fill: none;
+}

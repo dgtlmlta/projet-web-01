@@ -1,6 +1,6 @@
 <?php 
 
-	namespace XPetsIntl;
+	namespace Stampee;
 	
 	class TwigController {
 		private static $ext = ".twig";

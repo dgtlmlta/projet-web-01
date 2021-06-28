@@ -1,6 +1,6 @@
 <?php
 
-	namespace XPetsIntl;
+	namespace Stampee;
 
 	class SessionManager {
 		static private $editors = [2];

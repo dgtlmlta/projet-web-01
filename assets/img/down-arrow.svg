@@ -1,0 +1,10 @@
+<!--
+	Icône flèche pour les menus
+	Author: Mark Root-Wiley
+	Source: https://css-tricks.com/in-praise-of-the-unambiguous-click-menu/
+-->
+<svg xmlns="http://www.w3.org/2000/svg">
+	<symbol id="arrow" viewbox="0 0 16 16">
+		<polyline points="4 6, 8 10, 12 6"  stroke-width="2" fill="transparent" stroke-linecap="round" />
+	</symbol>
+</svg>

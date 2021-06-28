@@ -10,7 +10,7 @@
 	<!-- Fonts -->
 
 	<!-- Stylesheets -->
-	<link rel="stylesheet" href="{{ constant("\\XPetsIntl\\ROOTDIR") }}styles/main.css">
+	<link rel="stylesheet" href="{{ constant("\\Stampee\\ROOTDIR") }}styles/main.css">
 
 </head>
 
@@ -19,7 +19,7 @@
 		<h1>{{ headerText }}</h1>
 	</header>
 	<main>
-		<form action="{{ constant("\\XPetsIntl\\ROOTDIR") }}xpets/updateXpet" method="post" enctype="multipart/form-data">
+		<form action="{{ constant("\\Stampee\\ROOTDIR") }}xpets/updateXpet" method="post" enctype="multipart/form-data">
 			<div class="input-field">
 				<label for="inputName">Nom de l'animal : </label>
 				<input name="name" id="inputName" type="text" {% if update %}value="{{ xpet.name }}"{% endif %}> 
