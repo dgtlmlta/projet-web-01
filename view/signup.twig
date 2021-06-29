@@ -1,0 +1,19 @@
+{% extends "@views/base-layout.twig" %}
+
+{% block pageTitle %}Inscription{% endblock %}
+
+{% block pageDescription %}Formulaire d'inscription afin de devenir membre de la plateforme de vente.{% endblock %}
+
+{% block mainContent %}
+	<main class="content signup">
+	<h1>Inscription</h1>
+
+	{% if hasError %}
+	<pre>
+		{{ errors }}
+	</pre>	
+	{% endif %}
+	
+	{% include "@inc/form-signup.twig" %}
+	</main>
+{% endblock %}

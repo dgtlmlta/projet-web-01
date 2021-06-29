@@ -1,0 +1,93 @@
+<!-- navigation principale :: click menu -->
+<nav class="primary-navigation" aria-label="Primary navigation">
+	<div class="menu-wrapper content">
+		<ul class="click-menu">
+			<li aria-current="page">
+				<a href="/">Accueil</a>
+			</li>
+		
+			<li aria-expanded="false" data-menu-panel="catalogue">
+				<button class="top-level-action" type="button">
+					<span>Catalogue de produits</span>
+					<svg class="down-arrow" width="16" height="16">
+						<use href="/assets/img/down-arrow.svg#arrow" />
+					</svg>
+				</button>
+				<ul aria-hidden="true">
+					<li>
+						<a href="/catalogue">Consulter le catalogue</a>
+					</li>
+					<li class="no-action-item">
+						<span>Effectuer une rechercher</span>
+		
+						<div class="search-box">
+							<input type="text" aria-label="Recherche" placeholder="Votre recherche...">
+							<button class="white-overlay" type="button">
+								<span class="visually-hidden">Lancer la recherche</span>
+								<svg class="magnifying-glass-icon" width="16" height="16">
+									<use href="assets/img/magnifying-glass-icon.svg#magnifying-glass" />
+								</svg>
+							</button>
+						</div>
+					</li>
+				</ul>
+			</li>
+			<li aria-expanded="false" data-menu-panel="actualites">
+				<button class="top-level-action" type="button">
+					<span>Actualités</span>
+					<svg class="down-arrow" width="16" height="16">
+						<use href="assets/img/down-arrow.svg#arrow" />
+					</svg>
+				</button>
+				<ul aria-hidden="true">
+					<li><a href="#">Toutes les actualités</a></li>
+					<li><a href="#">Timbres</a></li>
+					<li><a href="#">Enchères</a></li>
+					<li><a href="#">Bridge</a></li>
+				</ul>
+			</li>
+			<li aria-expanded="false" data-menu-panel="contacts">
+				<button class="top-level-action" type="button">
+					Contacts
+					<svg class="down-arrow" width="16" height="16">
+						<use href="assets/img/down-arrow.svg#arrow" />
+					</svg>
+				</button>
+				<ul aria-hidden="true">
+					<li><a href="#">Angleterre</a></li>
+					<li><a href="#">Canada</a></li>
+					<li><a href="#">États-Unis</a></li>
+					<li><a href="#">Australie</a></li>
+				</ul>
+			</li>
+			<!-- Tableau de bord du membre si il y a un utilisateur d'authentifié -->
+			{% if isLoggedIn %}
+			<li aria-expanded="false" data-menu-panel="profile">				
+				<button class="top-level-action" type="button">
+					<span>Salut, {{ userFirstName }} !</span>
+					<svg class="down-arrow" width="16" height="16">
+						<use href="assets/img/down-arrow.svg#arrow" />
+					</svg>
+				</button>
+				<ul aria-hidden="true">
+					{% if isMember %}
+					<li><a href="#">Vendre un timbre</a></li>
+					<li><a href="#">Voir mon profil</a></li>	
+					{% endif %}
+
+					{% if isAdmin %}
+					<li><a href="#">Gérer les enchères</a></li>
+					<li><a href="#">Gérer les membres</a></li>
+					{% endif %}				
+					<li><a href="/deconnexion">Me déconnecter</a></li>					
+				</ul>				
+			</li>
+			{% else %}
+			<li>
+				<a href="/authentification">S'authentifier&nbsp;/ s'inscrire</a>
+			</li>
+			{% endif %}
+		</ul>
+	</div>
+</nav>
+<!-- /navigation principale-->

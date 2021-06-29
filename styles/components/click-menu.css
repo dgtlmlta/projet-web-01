@@ -104,6 +104,11 @@
 
 
 /* Sous-menus */
+/* Aligner le dernier sous-menu à la droite */
+.click-menu [aria-expanded]:last-of-type ul {
+	right: 0;
+}
+
 .click-menu [aria-expanded="false"] ul {
 	opacity: 0;
 	pointer-events: none;

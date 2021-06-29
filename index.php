@@ -14,7 +14,7 @@
 	
 	FileManager::controller("TwigController");
 	FileManager::lib("SessionManager");
-	FileManager::model("LogDAO");
+	// FileManager::model("LogDAO");
 
 	
 	$uid = (isset($_SESSION["userId"])) ?
@@ -22,33 +22,34 @@
 		null;
 
 	// Enregistrement dans le journal
-	$logDAO = new LogDAO();
-	$logDAO->storeAccessLog($_SERVER["REQUEST_URI"], $_SERVER["REMOTE_ADDR"], $uid);
+	// $logDAO = new LogDAO();
+	// $logDAO->storeAccessLog($_SERVER["REQUEST_URI"], $_SERVER["REMOTE_ADDR"], $uid);
 
 	//recuperer le chemin (URL) et mettre dans un tableau
 	$url = (isset($_SERVER["REQUEST_URI"]) && $_SERVER["REQUEST_URI"] != "/") ?
-		explode('/', $_SERVER["REQUEST_URI"]) :
+		explode('/', ltrim($_SERVER["REQUEST_URI"], "/")) :
 		"/";
 
 	/* $url = (explode('/', $_SERVER["REQUEST_URI"])[0] != "") ?
 		explode('/', $slug) :
 		"/"; */
-
+	
+	// Pages à ne pas inclure comme referer
+	$noref = [
+		"authentification",
+		"inscription"
+	];
+	
 	if($url == "/"){
 		echo TwigController::render(
 			"index",
 			[
-				// Texte Header
-				"pageTitle" => "Bienvenue - accueil",
-				"pageDescription" => "Accueil du portail de vente aux enchères de Lord Stampee",
-
-				// Définir le type de page
-				"pageType" => "index"
+				
 			]
 		);
 	} else{
-		if(!(strpos($slug, "login") === 0)) {
-			$_SESSION["referer"] = $slug;
+		if(!in_array($url[0], $noref)) {
+			$_SESSION["referer"] = $_SERVER["REQUEST_URI"];
 		}
 
 		$requestUrl = $url[0];
@@ -57,7 +58,6 @@
 		$controllerPath = __DIR__ . "/controller/" . ucfirst($requestUrl) . "Controller.php";
 		
 		if(file_exists($controllerPath)) {
-			
 			// require_once $controllerPath;
 			FileManager::controller(ucfirst($requestUrl) . "Controller");
 		
@@ -72,16 +72,12 @@
 				} else {
 					$method = $url[1];
 
-					if($method === "formulaire" && !SessionManager::canEdit()) {
-						FileManager::redirect();
-					}
-
 					if(isset($url[2]) && is_numeric($url[2])) {
 						$id = $url[2];
 					}
 					
 					if(method_exists($controller, $method)) {
-						echo $controller->$method($id);		
+						echo $controller->$method();		
 					} else {
 						FileManager::redirect();	
 					}
@@ -90,7 +86,7 @@
 				echo $controller->index();
 			}			
 		} else {
-			FileManager::redirect();
+			// FileManager::redirect();
 		}
 
 	}

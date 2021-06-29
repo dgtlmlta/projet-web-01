@@ -1,0 +1,12 @@
+{% extends "@views/base-layout.twig" %}
+
+{% block pageTitle %}Authentification{% endblock %}
+
+{% block pageDescription %}Formualaire d'authentification des membres de la plateforme de vente.{% endblock %}
+
+{% block mainContent %}
+	<main class="content login">
+	<h1>Authentification</h1>
+	{% include "@inc/form-login.twig" %}
+	</main>
+{% endblock %}

@@ -10,7 +10,7 @@
 
 		public function __construct() {
 			$this->hostname = "localhost";
-			$this->database = "xpets";
+			$this->database = "stampee";
 			$this->username = "stamper";
 			$this->password = "stampino";
 			

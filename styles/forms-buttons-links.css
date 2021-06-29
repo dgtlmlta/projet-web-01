@@ -4,6 +4,16 @@
 
 }
 /* Éléments de formulaire généraux */
+form {
+	max-width: var(--text-max-width);
+}
+
+form :is(label, input) {
+	display: block;
+	width: 100%;
+}
+
+
 input,
 button,
 select,

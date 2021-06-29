@@ -1,502 +1,504 @@
-{% include "includes/header.twig" %}
+{% extends "@views/base-layout.twig" %}
+
+{% block pageTitle %}Accueil - Bienvenue !{% endblock %}
+
+{% block pageDescription %}Accueil du portail de ventes aux enchères philatéliques de Lord Stampee le 3e.{% endblock %}
+
+{% block styles %}
+	{{ parent() }}
+	<link rel="stylesheet" href="./styles/index.css">	
+{% endblock %}
 
 
-	<!-- contenu -->
-	<main class="welcome content">
-		<h1>Bienvenue !</h1>
 
-		<section class="flow-content">
-			<h2>Qui sommes-nous</h2>	
+{% block mainContent %}
+<!-- contenu -->
+<main class="welcome content">
+	<h1>Bienvenue !</h1>
 
-			<div class="text-content flow-content">
-				<p>Sandafayre (Holdings) Ltd are highly respected as the leading expert and the global authority in the field of rare stamps, highly collectable stamps, postal history, collections and entire estates of collectables. We have stamps for sale from Great Britain, The Commonwealth and countries worldwide. Sandafayre buys stamp collections and are philatelic auctioneers. We sell stamps to philatelists and stamp dealers from all over the world. Sandafayre holds online stamp auctions every week, and we also hold public auctions of stamps and stamp collections.</p>
-				<p>If you are seing stamp collections or are buying stamps for your collection or philatelic investment portfolio then we offer thousands of different stamps and philately related items every week. We run weekly “Mail Bid Sales” which appear on our website and also as printed catalogues (we print 52 different Mail Bid Sale catalogues each year!), these sales allow bidders both on and off-line to compete on an equal footing with each other for the lots they want. We also hold at least 4 public auctions each year under the banner of "Cheshire Stamp Auctions" with a printed catalogue, a room filled with bidders, an auctioneer wielding a gavel and an online platform allowing people from all over the world to bid live!</p>
-			</div>
-		</section>
-		
-		<section class="panel-suggestions flow-content">
-			<h2>Populaires cette semaine</h2>
+	<section class="flow-content">
+		<h2>Qui sommes-nous</h2>	
 
-			<div class="grid">
-				<article class="lot-card">
-					<picture>
-						<img src="assets/img/stamps-db/stamp-1.jpg" alt="Timbre brun représentant un quelconque kaiser Autrichien">
-					</picture>
-					
-					<!-- info timbre -->
-					<div class="info flow-content">				
-						<header>
-							<div class="time-left">
-								<svg width="16" height="16">
-									<use href="assets/img/feather-core-clock.svg#clock" />
-								</svg>
-								<span>12j 22h 15m</span>
-							</div>
-							<h3>Lot 78 - AUSTRIA fine</h3>
-						</header>
-					
-						<div class="toggle-favorite-wrapper">
-							<label class="toggle-favorite">
-								<input type="checkbox" class="visually-hidden">
-								<svg class="favorite-icon" width="16" height="16">
-									<use href="assets/img/five_pointed_star_solid.svg#fav-star" />
-								</svg>
-								Ajouter à vos favoris
-							</label>
-						</div>						
-												
-						<div class="bidding-properties">
-							<div class="current-bid">
-								<span>Mise courante : </span>
-								<span class="bid">2 250,00&nbsp;$</span>
-							</div>
-						</div>
-
-						<div class="card-actions">
-							<button class="place-your-bid" type="button">Placer une mise</button>
-							<a href="#" class="cta">Détails</a>
-						</div>
-					</div>
-					<!-- /info timbre -->
-
-					<div class="tags-display">
-						<span class="lords-pick">Choix du Lord</span>
-					</div>		
-				</article>
-
-				<article class="lot-card">
-					<picture>
-						<img src="assets/img/stamps-db/stamp-2.jpg" alt="Timbre brun représentant un quelconque kaiser Autrichien">
-					</picture>
-					
-					<!-- info timbre -->
-					<div class="info flow-content">
-						<header>
-							<div class="time-left">
-								<svg width="16" height="16">
-									<use href="assets/img/feather-core-clock.svg#clock" />
-								</svg>
-								<span>12j 22h 15m</span>
-							</div>
-							
-							<h3>Lot 78 焼き鳥 - 1867-84 50k brown fine</h3>
-						</header>
-					
-						<label class="toggle-favorite">
-							<input type="checkbox" class="visually-hidden">
-							<svg class="favorite-icon" width="16" height="16">
-								<use href="assets/img/five_pointed_star_solid.svg#fav-star" />
-							</svg>
-							Ajouter à vos favoris				
-						</label>							
-						
-						<div class="bidding-properties">
-							<div class="current-bid">
-								<span>Mise courante&nbsp;:</span>
-								<span class="bid">150,00&nbsp;$</span>
-							</div>
-						</div>
-
-						<div class="card-actions">
-							<button class="place-your-bid" type="button">Placer une mise</button>
-							<a href="#" class="cta">Détails</a>
-						</div>				
-					</div>
-					<!-- /info timbre -->
-				</article>
-					
-				<article class="lot-card">
-					<picture>
-						<img src="assets/img/stamps-db/stamp-3.jpg" alt="Timbre brun représentant un quelconque kaiser Autrichien">
-					</picture>
-					
-					<!-- info timbre -->
-					<div class="info flow-content">
-						<header>
-							<div class="time-left">
-								<svg width="16" height="16">
-									<use href="assets/img/feather-core-clock.svg#clock" />
-								</svg>
-								<span>12j 22h 15m</span>
-							</div>
-							<h3>Luxembourg 1962 Early Issue Fine Mint Hinged 1.50F. NW-134574</h3>
-						</header>
-					
-						<label class="toggle-favorite">
-							<input type="checkbox" class="visually-hidden">
-							<svg class="favorite-icon" width="16" height="16">
-								<use href="assets/img/five_pointed_star_solid.svg#fav-star" />
-							</svg>
-							Ajouter à vos favoris				
-						</label>
-											
-						<div class="bidding-properties">
-							<div class="current-bid">
-								<span>Mise courante : </span>
-								<span class="bid">5,00&nbsp;$</span>
-							</div>
-						</div>
-
-						<div class="card-actions">
-							<button class="place-your-bid" type="button">Placer une mise</button>
-							<a href="#" class="cta">Détails</a>
-						</div>				
-					</div>
-					<!-- /info timbre -->
-				</article>
-
-				<article class="lot-card">
-					<picture>
-						<img src="assets/img/stamps-db/stamp-4.jpg" alt="Timbre brun représentant un quelconque kaiser Autrichien">
-					</picture>
-					
-					<!-- info timbre -->
-					<div class="info flow-content">
-						<header>
-							<div class="time-left">
-								<svg width="16" height="16">
-									<use href="assets/img/feather-core-clock.svg#clock" />
-								</svg>
-								<span>12j 22h 15m</span>
-							</div>
-							<h3>Luxembourg 1962 Early Issue Fine Mint Hinged 1.50F. NW-134574</h3>
-						</header>	
-					
-						<label class="toggle-favorite">
-							<input type="checkbox" class="visually-hidden">
-							<svg class="favorite-icon" width="16" height="16">
-								<use href="assets/img/five_pointed_star_solid.svg#fav-star" />
-							</svg>
-							Ajouter à vos favoris				
-						</label>
-											
-						<div class="bidding-properties">
-							<div class="current-bid">
-								<span>Mise courante : </span>
-								<span class="bid">0,70&nbsp;$</span>
-							</div>
-						</div>
-
-						<div class="card-actions">
-							<button class="place-your-bid" type="button">Placer une mise</button>
-							<a href="#" class="cta">Détails</a>
-						</div>				
-					</div>
-					<!-- /info timbre -->
-				</article>
-
-				<article class="lot-card">
-					<picture>
-						<img src="assets/img/stamps-db/stamp-1.jpg" alt="Timbre brun représentant un quelconque kaiser Autrichien">
-					</picture>
-					
-					<!-- info timbre -->
-					<div class="info flow-content">				
-						<header>
-							<div class="time-left">
-								<svg width="16" height="16">
-									<use href="assets/img/feather-core-clock.svg#clock" />
-								</svg>
-								<span>12j 22h 15m</span>
-							</div>
-							<h3>Lot 78 - AUSTRIA fine</h3>
-						</header>
-					
-						<div class="toggle-favorite-wrapper">
-							<label class="toggle-favorite">
-								<input type="checkbox" class="visually-hidden">
-								<svg class="favorite-icon" width="16" height="16">
-									<use href="assets/img/five_pointed_star_solid.svg#fav-star" />
-								</svg>
-								Ajouter à vos favoris
-							</label>
-						</div>						
-												
-						<div class="bidding-properties">
-							<div class="current-bid">
-								<span>Mise courante : </span>
-								<span class="bid">2 250,00&nbsp;$</span>
-							</div>
-						</div>
-
-						<div class="card-actions">
-							<button class="place-your-bid" type="button">Placer une mise</button>
-							<a href="#" class="cta">Détails</a>
-						</div>
-					</div>
-					<!-- /info timbre -->
-
-					<div class="tags-display">
-						<span class="lords-pick">Choix du Lord</span>
-					</div>		
-				</article>
-
-				<article class="lot-card">
-					<picture>
-						<img src="assets/img/stamps-db/stamp-2.jpg" alt="Timbre brun représentant un quelconque kaiser Autrichien">
-					</picture>
-					
-					<!-- info timbre -->
-					<div class="info flow-content">
-						<header>
-							<div class="time-left">
-								<svg width="16" height="16">
-									<use href="assets/img/feather-core-clock.svg#clock" />
-								</svg>
-								<span>12j 22h 15m</span>
-							</div>
-							
-							<h3>Lot 78 焼き鳥 - 1867-84 50k brown fine</h3>
-						</header>
-					
-						<label class="toggle-favorite">
-							<input type="checkbox" class="visually-hidden">
-							<svg class="favorite-icon" width="16" height="16">
-								<use href="assets/img/five_pointed_star_solid.svg#fav-star" />
-							</svg>
-							Ajouter à vos favoris				
-						</label>							
-						
-						<div class="bidding-properties">
-							<div class="current-bid">
-								<span>Mise courante&nbsp;:</span>
-								<span class="bid">150,00&nbsp;$</span>
-							</div>
-						</div>
-
-						<div class="card-actions">
-							<button class="place-your-bid" type="button">Placer une mise</button>
-							<a href="#" class="cta">Détails</a>
-						</div>				
-					</div>
-					<!-- /info timbre -->
-				</article>
-					
-				<article class="lot-card">
-					<picture>
-						<img src="assets/img/stamps-db/stamp-3.jpg" alt="Timbre brun représentant un quelconque kaiser Autrichien">
-					</picture>
-					
-					<!-- info timbre -->
-					<div class="info flow-content">
-						<header>
-							<div class="time-left">
-								<svg width="16" height="16">
-									<use href="assets/img/feather-core-clock.svg#clock" />
-								</svg>
-								<span>12j 22h 15m</span>
-							</div>
-							<h3>Luxembourg 1962 Early Issue Fine Mint Hinged 1.50F. NW-134574</h3>
-						</header>
-					
-						<label class="toggle-favorite">
-							<input type="checkbox" class="visually-hidden">
-							<svg class="favorite-icon" width="16" height="16">
-								<use href="assets/img/five_pointed_star_solid.svg#fav-star" />
-							</svg>
-							Ajouter à vos favoris				
-						</label>
-											
-						<div class="bidding-properties">
-							<div class="current-bid">
-								<span>Mise courante : </span>
-								<span class="bid">5,00&nbsp;$</span>
-							</div>
-						</div>
-
-						<div class="card-actions">
-							<button class="place-your-bid" type="button">Placer une mise</button>
-							<a href="#" class="cta">Détails</a>
-						</div>				
-					</div>
-					<!-- /info timbre -->
-				</article>
-
-				<article class="lot-card">
-					<picture>
-						<img src="assets/img/stamps-db/stamp-4.jpg" alt="Timbre brun représentant un quelconque kaiser Autrichien">
-					</picture>
-					
-					<!-- info timbre -->
-					<div class="info flow-content">
-						<header>
-							<div class="time-left">
-								<svg width="16" height="16">
-									<use href="assets/img/feather-core-clock.svg#clock" />
-								</svg>
-								<span>12j 22h 15m</span>
-							</div>
-							<h3>Luxembourg 1962 Early Issue Fine Mint Hinged 1.50F. NW-134574</h3>
-						</header>	
-					
-						<label class="toggle-favorite">
-							<input type="checkbox" class="visually-hidden">
-							<svg class="favorite-icon" width="16" height="16">
-								<use href="assets/img/five_pointed_star_solid.svg#fav-star" />
-							</svg>
-							Ajouter à vos favoris				
-						</label>
-											
-						<div class="bidding-properties">
-							<div class="current-bid">
-								<span>Mise courante : </span>
-								<span class="bid">0,70&nbsp;$</span>
-							</div>
-						</div>
-
-						<div class="card-actions">
-							<button class="place-your-bid" type="button">Placer une mise</button>
-							<a href="#" class="cta">Détails</a>
-						</div>				
-					</div>
-					<!-- /info timbre -->
-				</article>
-			</div>
-		</section>
-	
-		<!-- Section du Lord -->
-		<section class="flow-content">
-			<h2>À propos de Lord Stampee</h2>
-			<div class="text-content flow-content">
-				<p>Baron Stampee (/ˈmʌntʃaʊzən, ˈmʊntʃ-/;[1][2][a] German: [ˈmʏnçˌhaʊzn̩]) is a fictional German nobleman created by the German writer Rudolf Erich Raspe in his 1785 book Baron Munchausen's Narrative of his Marvellous Travels and Campaigns in Russia. The character is loosely based on a real baron, Hieronymus Karl Friedrich, Freiherr von Münchhausen.</p>
-				
-				<picture>
-					<img src="assets/img/og-lord-stampee-with-his-posse.jpg" alt="Lord Stampee et son crew devant sa somptueuse résidence">
-				</picture>
-
-				<p>Born in Bodenwerder, Electorate of Hanover, the real-life Münchhausen fought for the Russian Empire in the Russo-Turkish War of 1735–1739. Upon retiring in 1760, he became a minor celebrity within German aristocratic circles for telling outrageous tall tales based on his military career. After hearing some of Münchhausen's stories, Raspe adapted them anonymously into literary form, first in German as ephemeral magazine pieces and then in English as the 1785 book, which was first published in Oxford by a bookseller named Smith. The book was soon translated into other European languages, including a German version expanded by the poet Gottfried August Bürger. The real-life Münchhausen was deeply upset at the development of a fictional character bearing his name, and threatened legal proceedings against the book's publisher. Perhaps fearing a libel suit, Raspe never acknowledged his authorship of the work, which was only established posthumously.</p>
-			</div>
-		</section>
-		<!-- /section du Lord -->
-
-		<!-- Section nouvelles -->
-		<section class="news-listing flow-content">
-			<h2>Actualités</h2>
-
-			<div class="grid">
-				<article class="beige-box">
-					<a class="text-link" href="#">Timbres</a>
-					
-					<h3>Élise Gravel’s Message Monsters are among the U.S. Postal Service’s new stamps for 2021!</h3>
-
-					<p>Snail mail will be more fun in 2021 thanks to <a class="text-link" href="https://www.dailycartoonist.com/index.php/2020/12/05/fun-with-philately/">Message Monster stamps</a> featuring illustrations by Elise Gravel. The pane of 20 stamps invites interactivity with dozens of self adhesive decorations to adorn your envelopes and letters.</p>
-
-					<a class="text-link" href="#">Lire l'article</a>
-				</article>
-
-				<article class="beige-box">
-					<a class="text-link" href="#">Bridge</a>
-					
-					<h3>Bridge is a card game, not a sport: EU court</h3>
-
-					<p>The English Bridge Union, which has some 55,000 members, wanted a tax exemption linked to sports so that entrance fees to tournaments can become more affordable. British courts and officials have already refused, claiming a sport must have a significant element of physical activity.</p>
-
-					<a class="text-link" href="#">Lire l'article</a>
-				</article>
-				
-				<article class="beige-box">
-					<a class="text-link" href="#">Enchères</a>
-					
-					<h3>Sotheby's introduces cryptocurrency sales with a famous Banksy work</h3>
-
-					<p>"Love is in the Air" (2003), one of street artist Banksy's most recognizable works, is the first piece that Sotheby's will make eligible for purchase via either Bitcoin or Ether. It's estimated to sell for $3 million to $5 million (between 35 and 53 Bitcoin) when it goes up for auction May 12 in New York.</p>
-
-					<a class="text-link" href="#">Lire l'article</a>
-				</article>
-			</div>
-		</section>
-		<!-- /section nouvelles -->
-		
-	</main>
-	<!-- /contenu -->
-
-	<!-- navigation mobile -->
-	<nav class="primary-navigation-mobile">
-		<div class="menu-wrapper content">
-			<ul class="click-menu sub-on-top">
-				<li aria-expanded="false" data-menu-panel="catalogue">
-					<button class="top-level-action" type="button">
-						<span class="bottom-nav-icon">
-							<svg class="mobile-icon" width="16" height="16">
-								<use href="assets/img/icons/catalog.svg#stamp" />
-							</svg>
-							<span class="mobile-nav-label">Catalogue</span>
-						</span>
-					</button>
-
-					<ul aria-hidden="true">
-						<li class="no-action-item" aria-current="page"><span >Consulter le catalogue</span></li>
-						<li class="no-action-item">
-							<span>Effectuer une rechercher</span>
-			
-							<div class="search-box">
-								<input type="text" aria-label="Recherche" placeholder="Votre recherche...">
-								<button class="white-overlay" type="button">
-									<span class="visually-hidden">Lancer la recherche</span>
-									<svg class="magnifying-glass-icon" width="16" height="16">
-										<use href="assets/img/magnifying-glass-icon.svg#magnifying-glass" />
-									</svg>
-								</button>
-							</div>
-						</li>
-					</ul>
-				</li>
-
-				<li aria-expanded="false" data-menu-panel="actualites">
-					<button class="top-level-action" type="button">
-						<span class="bottom-nav-icon">
-							<svg class="mobile-icon" width="16" height="16">
-								<use href="assets/img/icons/news.svg#news" />
-							</svg>
-							<span class="mobile-nav-label">Actualités</span>
-						</span>
-					</button>
-
-					<ul aria-hidden="true">
-						<li><a href="#">Toutes les actualités</a></li>
-						<li><a href="#">Timbres</a></li>
-						<li><a href="#">Enchères</a></li>
-						<li><a href="#">Bridge</a></li>
-					</ul>
-				</li>
-				<li aria-expanded="false" data-menu-panel="contacts">
-					<button class="top-level-action" type="button">
-						<span class="bottom-nav-icon">
-							<svg class="mobile-icon" width="16" height="16">
-								<use href="assets/img/icons/contact.svg#envelop" />
-							</svg>
-							<span class="mobile-nav-label">Contact</span>
-						</span>
-					</button>
-
-					<ul aria-hidden="true">
-						<li><a href="#">Angleterre</a></li>
-						<li><a href="#">Canada</a></li>
-						<li><a href="#">États-Unis</a></li>
-						<li><a href="#">Australie</a></li>
-					</ul>
-				</li>
-				<li>
-					<button class="top-level-action" type="button">
-						<span class="bottom-nav-icon">
-							<svg class="mobile-icon" width="16" height="16">
-								<use href="assets/img/icons/login.svg#silhouette" />
-							</svg>
-							<span class="mobile-nav-label">Compte</span>
-						</span>
-					</button>
-				</li>
-			</ul>
+		<div class="text-content flow-content">
+			<p>Sandafayre (Holdings) Ltd are highly respected as the leading expert and the global authority in the field of rare stamps, highly collectable stamps, postal history, collections and entire estates of collectables. We have stamps for sale from Great Britain, The Commonwealth and countries worldwide. Sandafayre buys stamp collections and are philatelic auctioneers. We sell stamps to philatelists and stamp dealers from all over the world. Sandafayre holds online stamp auctions every week, and we also hold public auctions of stamps and stamp collections.</p>
+			<p>If you are seing stamp collections or are buying stamps for your collection or philatelic investment portfolio then we offer thousands of different stamps and philately related items every week. We run weekly “Mail Bid Sales” which appear on our website and also as printed catalogues (we print 52 different Mail Bid Sale catalogues each year!), these sales allow bidders both on and off-line to compete on an equal footing with each other for the lots they want. We also hold at least 4 public auctions each year under the banner of "Cheshire Stamp Auctions" with a printed catalogue, a room filled with bidders, an auctioneer wielding a gavel and an online platform allowing people from all over the world to bid live!</p>
 		</div>
-	</nav>
-	<!-- /navigation mobile -->
+	</section>
 	
+	<section class="panel-suggestions flow-content">
+		<h2>Populaires cette semaine</h2>
 
-	<footer>
-		<nav aria-label="Secondary navigation">
+		<div class="grid">
+			<article class="lot-card">
+				<picture>
+					<img src="assets/img/stamps-db/stamp-1.jpg" alt="Timbre brun représentant un quelconque kaiser Autrichien">
+				</picture>
+				
+				<!-- info timbre -->
+				<div class="info flow-content">				
+					<header>
+						<div class="time-left">
+							<svg width="16" height="16">
+								<use href="assets/img/feather-core-clock.svg#clock" />
+							</svg>
+							<span>12j 22h 15m</span>
+						</div>
+						<h3>Lot 78 - AUSTRIA fine</h3>
+					</header>
+				
+					<div class="toggle-favorite-wrapper">
+						<label class="toggle-favorite">
+							<input type="checkbox" class="visually-hidden">
+							<svg class="favorite-icon" width="16" height="16">
+								<use href="assets/img/five_pointed_star_solid.svg#fav-star" />
+							</svg>
+							Ajouter à vos favoris
+						</label>
+					</div>						
+											
+					<div class="bidding-properties">
+						<div class="current-bid">
+							<span>Mise courante : </span>
+							<span class="bid">2 250,00&nbsp;$</span>
+						</div>
+					</div>
 
-		</nav>
-	</footer>
+					<div class="card-actions">
+						<button class="place-your-bid" type="button">Placer une mise</button>
+						<a href="#" class="cta">Détails</a>
+					</div>
+				</div>
+				<!-- /info timbre -->
 
-</body>
-</html>
+				<div class="tags-display">
+					<span class="lords-pick">Choix du Lord</span>
+				</div>		
+			</article>
+
+			<article class="lot-card">
+				<picture>
+					<img src="assets/img/stamps-db/stamp-2.jpg" alt="Timbre brun représentant un quelconque kaiser Autrichien">
+				</picture>
+				
+				<!-- info timbre -->
+				<div class="info flow-content">
+					<header>
+						<div class="time-left">
+							<svg width="16" height="16">
+								<use href="assets/img/feather-core-clock.svg#clock" />
+							</svg>
+							<span>12j 22h 15m</span>
+						</div>
+						
+						<h3>Lot 78 焼き鳥 - 1867-84 50k brown fine</h3>
+					</header>
+				
+					<label class="toggle-favorite">
+						<input type="checkbox" class="visually-hidden">
+						<svg class="favorite-icon" width="16" height="16">
+							<use href="assets/img/five_pointed_star_solid.svg#fav-star" />
+						</svg>
+						Ajouter à vos favoris				
+					</label>							
+					
+					<div class="bidding-properties">
+						<div class="current-bid">
+							<span>Mise courante&nbsp;:</span>
+							<span class="bid">150,00&nbsp;$</span>
+						</div>
+					</div>
+
+					<div class="card-actions">
+						<button class="place-your-bid" type="button">Placer une mise</button>
+						<a href="#" class="cta">Détails</a>
+					</div>				
+				</div>
+				<!-- /info timbre -->
+			</article>
+				
+			<article class="lot-card">
+				<picture>
+					<img src="assets/img/stamps-db/stamp-3.jpg" alt="Timbre brun représentant un quelconque kaiser Autrichien">
+				</picture>
+				
+				<!-- info timbre -->
+				<div class="info flow-content">
+					<header>
+						<div class="time-left">
+							<svg width="16" height="16">
+								<use href="assets/img/feather-core-clock.svg#clock" />
+							</svg>
+							<span>12j 22h 15m</span>
+						</div>
+						<h3>Luxembourg 1962 Early Issue Fine Mint Hinged 1.50F. NW-134574</h3>
+					</header>
+				
+					<label class="toggle-favorite">
+						<input type="checkbox" class="visually-hidden">
+						<svg class="favorite-icon" width="16" height="16">
+							<use href="assets/img/five_pointed_star_solid.svg#fav-star" />
+						</svg>
+						Ajouter à vos favoris				
+					</label>
+										
+					<div class="bidding-properties">
+						<div class="current-bid">
+							<span>Mise courante : </span>
+							<span class="bid">5,00&nbsp;$</span>
+						</div>
+					</div>
+
+					<div class="card-actions">
+						<button class="place-your-bid" type="button">Placer une mise</button>
+						<a href="#" class="cta">Détails</a>
+					</div>				
+				</div>
+				<!-- /info timbre -->
+			</article>
+
+			<article class="lot-card">
+				<picture>
+					<img src="assets/img/stamps-db/stamp-4.jpg" alt="Timbre brun représentant un quelconque kaiser Autrichien">
+				</picture>
+				
+				<!-- info timbre -->
+				<div class="info flow-content">
+					<header>
+						<div class="time-left">
+							<svg width="16" height="16">
+								<use href="assets/img/feather-core-clock.svg#clock" />
+							</svg>
+							<span>12j 22h 15m</span>
+						</div>
+						<h3>Luxembourg 1962 Early Issue Fine Mint Hinged 1.50F. NW-134574</h3>
+					</header>	
+				
+					<label class="toggle-favorite">
+						<input type="checkbox" class="visually-hidden">
+						<svg class="favorite-icon" width="16" height="16">
+							<use href="assets/img/five_pointed_star_solid.svg#fav-star" />
+						</svg>
+						Ajouter à vos favoris				
+					</label>
+										
+					<div class="bidding-properties">
+						<div class="current-bid">
+							<span>Mise courante : </span>
+							<span class="bid">0,70&nbsp;$</span>
+						</div>
+					</div>
+
+					<div class="card-actions">
+						<button class="place-your-bid" type="button">Placer une mise</button>
+						<a href="#" class="cta">Détails</a>
+					</div>				
+				</div>
+				<!-- /info timbre -->
+			</article>
+
+			<article class="lot-card">
+				<picture>
+					<img src="assets/img/stamps-db/stamp-1.jpg" alt="Timbre brun représentant un quelconque kaiser Autrichien">
+				</picture>
+				
+				<!-- info timbre -->
+				<div class="info flow-content">				
+					<header>
+						<div class="time-left">
+							<svg width="16" height="16">
+								<use href="assets/img/feather-core-clock.svg#clock" />
+							</svg>
+							<span>12j 22h 15m</span>
+						</div>
+						<h3>Lot 78 - AUSTRIA fine</h3>
+					</header>
+				
+					<div class="toggle-favorite-wrapper">
+						<label class="toggle-favorite">
+							<input type="checkbox" class="visually-hidden">
+							<svg class="favorite-icon" width="16" height="16">
+								<use href="assets/img/five_pointed_star_solid.svg#fav-star" />
+							</svg>
+							Ajouter à vos favoris
+						</label>
+					</div>						
+											
+					<div class="bidding-properties">
+						<div class="current-bid">
+							<span>Mise courante : </span>
+							<span class="bid">2 250,00&nbsp;$</span>
+						</div>
+					</div>
+
+					<div class="card-actions">
+						<button class="place-your-bid" type="button">Placer une mise</button>
+						<a href="#" class="cta">Détails</a>
+					</div>
+				</div>
+				<!-- /info timbre -->
+
+				<div class="tags-display">
+					<span class="lords-pick">Choix du Lord</span>
+				</div>		
+			</article>
+
+			<article class="lot-card">
+				<picture>
+					<img src="assets/img/stamps-db/stamp-2.jpg" alt="Timbre brun représentant un quelconque kaiser Autrichien">
+				</picture>
+				
+				<!-- info timbre -->
+				<div class="info flow-content">
+					<header>
+						<div class="time-left">
+							<svg width="16" height="16">
+								<use href="assets/img/feather-core-clock.svg#clock" />
+							</svg>
+							<span>12j 22h 15m</span>
+						</div>
+						
+						<h3>Lot 78 焼き鳥 - 1867-84 50k brown fine</h3>
+					</header>
+				
+					<label class="toggle-favorite">
+						<input type="checkbox" class="visually-hidden">
+						<svg class="favorite-icon" width="16" height="16">
+							<use href="assets/img/five_pointed_star_solid.svg#fav-star" />
+						</svg>
+						Ajouter à vos favoris				
+					</label>							
+					
+					<div class="bidding-properties">
+						<div class="current-bid">
+							<span>Mise courante&nbsp;:</span>
+							<span class="bid">150,00&nbsp;$</span>
+						</div>
+					</div>
+
+					<div class="card-actions">
+						<button class="place-your-bid" type="button">Placer une mise</button>
+						<a href="#" class="cta">Détails</a>
+					</div>				
+				</div>
+				<!-- /info timbre -->
+			</article>
+				
+			<article class="lot-card">
+				<picture>
+					<img src="assets/img/stamps-db/stamp-3.jpg" alt="Timbre brun représentant un quelconque kaiser Autrichien">
+				</picture>
+				
+				<!-- info timbre -->
+				<div class="info flow-content">
+					<header>
+						<div class="time-left">
+							<svg width="16" height="16">
+								<use href="assets/img/feather-core-clock.svg#clock" />
+							</svg>
+							<span>12j 22h 15m</span>
+						</div>
+						<h3>Luxembourg 1962 Early Issue Fine Mint Hinged 1.50F. NW-134574</h3>
+					</header>
+				
+					<label class="toggle-favorite">
+						<input type="checkbox" class="visually-hidden">
+						<svg class="favorite-icon" width="16" height="16">
+							<use href="assets/img/five_pointed_star_solid.svg#fav-star" />
+						</svg>
+						Ajouter à vos favoris				
+					</label>
+										
+					<div class="bidding-properties">
+						<div class="current-bid">
+							<span>Mise courante : </span>
+							<span class="bid">5,00&nbsp;$</span>
+						</div>
+					</div>
+
+					<div class="card-actions">
+						<button class="place-your-bid" type="button">Placer une mise</button>
+						<a href="#" class="cta">Détails</a>
+					</div>				
+				</div>
+				<!-- /info timbre -->
+			</article>
+
+			<article class="lot-card">
+				<picture>
+					<img src="assets/img/stamps-db/stamp-4.jpg" alt="Timbre brun représentant un quelconque kaiser Autrichien">
+				</picture>
+				
+				<!-- info timbre -->
+				<div class="info flow-content">
+					<header>
+						<div class="time-left">
+							<svg width="16" height="16">
+								<use href="assets/img/feather-core-clock.svg#clock" />
+							</svg>
+							<span>12j 22h 15m</span>
+						</div>
+						<h3>Luxembourg 1962 Early Issue Fine Mint Hinged 1.50F. NW-134574</h3>
+					</header>	
+				
+					<label class="toggle-favorite">
+						<input type="checkbox" class="visually-hidden">
+						<svg class="favorite-icon" width="16" height="16">
+							<use href="assets/img/five_pointed_star_solid.svg#fav-star" />
+						</svg>
+						Ajouter à vos favoris				
+					</label>
+										
+					<div class="bidding-properties">
+						<div class="current-bid">
+							<span>Mise courante : </span>
+							<span class="bid">0,70&nbsp;$</span>
+						</div>
+					</div>
+
+					<div class="card-actions">
+						<button class="place-your-bid" type="button">Placer une mise</button>
+						<a href="#" class="cta">Détails</a>
+					</div>				
+				</div>
+				<!-- /info timbre -->
+			</article>
+		</div>
+	</section>
+
+	<!-- Section du Lord -->
+	<section class="flow-content">
+		<h2>À propos de Lord Stampee</h2>
+		<div class="text-content flow-content">
+			<p>Baron Stampee (/ˈmʌntʃaʊzən, ˈmʊntʃ-/;[1][2][a] German: [ˈmʏnçˌhaʊzn̩]) is a fictional German nobleman created by the German writer Rudolf Erich Raspe in his 1785 book Baron Munchausen's Narrative of his Marvellous Travels and Campaigns in Russia. The character is loosely based on a real baron, Hieronymus Karl Friedrich, Freiherr von Münchhausen.</p>
+			
+			<picture>
+				<img src="assets/img/og-lord-stampee-with-his-posse.jpg" alt="Lord Stampee et son crew devant sa somptueuse résidence">
+			</picture>
+
+			<p>Born in Bodenwerder, Electorate of Hanover, the real-life Münchhausen fought for the Russian Empire in the Russo-Turkish War of 1735–1739. Upon retiring in 1760, he became a minor celebrity within German aristocratic circles for telling outrageous tall tales based on his military career. After hearing some of Münchhausen's stories, Raspe adapted them anonymously into literary form, first in German as ephemeral magazine pieces and then in English as the 1785 book, which was first published in Oxford by a bookseller named Smith. The book was soon translated into other European languages, including a German version expanded by the poet Gottfried August Bürger. The real-life Münchhausen was deeply upset at the development of a fictional character bearing his name, and threatened legal proceedings against the book's publisher. Perhaps fearing a libel suit, Raspe never acknowledged his authorship of the work, which was only established posthumously.</p>
+		</div>
+	</section>
+	<!-- /section du Lord -->
+
+	<!-- Section nouvelles -->
+	<section class="news-listing flow-content">
+		<h2>Actualités</h2>
+
+		<div class="grid">
+			<article class="beige-box">
+				<a class="text-link" href="#">Timbres</a>
+				
+				<h3>Élise Gravel’s Message Monsters are among the U.S. Postal Service’s new stamps for 2021!</h3>
+
+				<p>Snail mail will be more fun in 2021 thanks to <a class="text-link" href="https://www.dailycartoonist.com/index.php/2020/12/05/fun-with-philately/">Message Monster stamps</a> featuring illustrations by Elise Gravel. The pane of 20 stamps invites interactivity with dozens of self adhesive decorations to adorn your envelopes and letters.</p>
+
+				<a class="text-link" href="#">Lire l'article</a>
+			</article>
+
+			<article class="beige-box">
+				<a class="text-link" href="#">Bridge</a>
+				
+				<h3>Bridge is a card game, not a sport: EU court</h3>
+
+				<p>The English Bridge Union, which has some 55,000 members, wanted a tax exemption linked to sports so that entrance fees to tournaments can become more affordable. British courts and officials have already refused, claiming a sport must have a significant element of physical activity.</p>
+
+				<a class="text-link" href="#">Lire l'article</a>
+			</article>
+			
+			<article class="beige-box">
+				<a class="text-link" href="#">Enchères</a>
+				
+				<h3>Sotheby's introduces cryptocurrency sales with a famous Banksy work</h3>
+
+				<p>"Love is in the Air" (2003), one of street artist Banksy's most recognizable works, is the first piece that Sotheby's will make eligible for purchase via either Bitcoin or Ether. It's estimated to sell for $3 million to $5 million (between 35 and 53 Bitcoin) when it goes up for auction May 12 in New York.</p>
+
+				<a class="text-link" href="#">Lire l'article</a>
+			</article>
+		</div>
+	</section>
+	<!-- /section nouvelles -->
+	
+</main>
+<!-- /contenu -->
+
+<!-- navigation mobile -->
+<nav class="primary-navigation-mobile">
+	<div class="menu-wrapper content">
+		<ul class="click-menu sub-on-top">
+			<li aria-expanded="false" data-menu-panel="catalogue">
+				<button class="top-level-action" type="button">
+					<span class="bottom-nav-icon">
+						<svg class="mobile-icon" width="16" height="16">
+							<use href="assets/img/icons/catalog.svg#stamp" />
+						</svg>
+						<span class="mobile-nav-label">Catalogue</span>
+					</span>
+				</button>
+
+				<ul aria-hidden="true">
+					<li class="no-action-item" aria-current="page"><span >Consulter le catalogue</span></li>
+					<li class="no-action-item">
+						<span>Effectuer une rechercher</span>
+		
+						<div class="search-box">
+							<input type="text" aria-label="Recherche" placeholder="Votre recherche...">
+							<button class="white-overlay" type="button">
+								<span class="visually-hidden">Lancer la recherche</span>
+								<svg class="magnifying-glass-icon" width="16" height="16">
+									<use href="assets/img/magnifying-glass-icon.svg#magnifying-glass" />
+								</svg>
+							</button>
+						</div>
+					</li>
+				</ul>
+			</li>
+
+			<li aria-expanded="false" data-menu-panel="actualites">
+				<button class="top-level-action" type="button">
+					<span class="bottom-nav-icon">
+						<svg class="mobile-icon" width="16" height="16">
+							<use href="assets/img/icons/news.svg#news" />
+						</svg>
+						<span class="mobile-nav-label">Actualités</span>
+					</span>
+				</button>
+
+				<ul aria-hidden="true">
+					<li><a href="#">Toutes les actualités</a></li>
+					<li><a href="#">Timbres</a></li>
+					<li><a href="#">Enchères</a></li>
+					<li><a href="#">Bridge</a></li>
+				</ul>
+			</li>
+			<li aria-expanded="false" data-menu-panel="contacts">
+				<button class="top-level-action" type="button">
+					<span class="bottom-nav-icon">
+						<svg class="mobile-icon" width="16" height="16">
+							<use href="assets/img/icons/contact.svg#envelop" />
+						</svg>
+						<span class="mobile-nav-label">Contact</span>
+					</span>
+				</button>
+
+				<ul aria-hidden="true">
+					<li><a href="#">Angleterre</a></li>
+					<li><a href="#">Canada</a></li>
+					<li><a href="#">États-Unis</a></li>
+					<li><a href="#">Australie</a></li>
+				</ul>
+			</li>
+			<li>
+				<button class="top-level-action" type="button">
+					<span class="bottom-nav-icon">
+						<svg class="mobile-icon" width="16" height="16">
+							<use href="assets/img/icons/login.svg#silhouette" />
+						</svg>
+						<span class="mobile-nav-label">Compte</span>
+					</span>
+				</button>
+			</li>
+		</ul>
+	</div>
+</nav>
+<!-- /navigation mobile -->
+{% endblock %}

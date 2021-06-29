@@ -2,7 +2,6 @@
 
 	namespace Stampee;
 
-	FileManager::model("Gateway");
 	FileManager::model("UserDAO");
 	FileManager::model("RoleDAO");
 	

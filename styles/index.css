@@ -13,7 +13,7 @@
 
 .news-listing .grid {		
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(var(--news-card-min-size), 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(var(--news-card-min-size), 1fr));
 	gap: var(--gutterHecto);
 }
 

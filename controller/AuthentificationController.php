@@ -1,22 +1,19 @@
 <?php 
 	namespace Stampee;
 
-	FileManager::model("Gateway");
-	FileManager::model("UserDAO");
-
-	class LoginController {
-		
+	class AuthentificationController {
 		public function index() {
+			
+			
 			return TwigController::render(
-				"login-formulaire",
-				[
-					"pageTitle" => "X-Pets :: Authentification",
-					"pageDesc" => "Bâtir un panneau administratif pour les différents types d'usagers"
-				]
+				"login",
+				[]
 			);
 		}
-		
-		public function authenticateUser() {
+
+		public function authentifierMembre() {
+			FileManager::model("UserDAO");
+			
 			$userDAO = new UserDAO();
 			
 			if($user = $userDAO->validateUser($_POST["username"], $_POST["password"])) {
@@ -25,7 +22,7 @@
 				if(!empty($_SESSION["referer"])) {
 					$ref = $_SESSION["referer"];
 					unset($_SESSION["referer"]);
-					FileManager::redirect($ref);
+					FileManager::redirect(ltrim($ref, "/"));
 				} else {
 					FileManager::redirect();
 				}
@@ -33,8 +30,6 @@
 				echo "Nope";
 			}
 		}
-		
 	}
-
 
 ?>

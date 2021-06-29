@@ -2,12 +2,10 @@
 
 	namespace Stampee;
 
+	FileManager::model("Gateway");
+
 	class UserDAO extends Gateway {
 		protected $table = "user";
-
-		public function addUser($data) {
-
-		}
 
 		private function checkUserExist($user) {
 			$stmt = $this->prepareStmt(

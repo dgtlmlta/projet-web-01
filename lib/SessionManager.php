@@ -3,7 +3,8 @@
 	namespace Stampee;
 
 	class SessionManager {
-		static private $editors = [2];
+		static private $adminId = 88;
+		static private $memberId = 22;
 
 		static public function initSession($user) {
 			session_regenerate_id();
@@ -12,18 +13,22 @@
 			$_SESSION["userFName"] = $user->firstName;
 			$_SESSION["roleId"] = $user->roleId;
 			$_SESSION["fingerprint"] = SECRET_SPICE;
+
+			var_dump($_SESSION);
 		}
 		
 		static public function isLoggedIn() {
-			if(isset($_SESSION["userId"]) && $_SESSION["fingerprint"] === SECRET_SPICE) {
-				return true;
-			}
-
-			return false;
+			return 
+				isset($_SESSION["userId"])
+				&& $_SESSION["fingerprint"] === SECRET_SPICE;
 		}
 
-		static public function canEdit() {
-			return self::isLoggedIn() && in_array($_SESSION["roleId"], self::$editors);
+		static public function isAdmin() {
+			return self::isLoggedIn() && $_SESSION["roleId"] == self::$adminId;
+		}
+
+		static public function isMember() {
+			return self::isLoggedIn() && $_SESSION["roleId"] == self::$memberId;
 		}
 	}
 

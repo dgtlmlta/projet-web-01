@@ -17,6 +17,8 @@
 	--content-width: 80%;
 	--content-max-width: 1400px;
 	--content-padding: var(--gutterKilo);
+
+	--text-max-width: 50ch;
 }
 
 /* Réinitialisations :::::::::: */
@@ -68,7 +70,7 @@ main {
 }
 
 p {
-	max-width: 50ch;
+	max-width: var(--text-max-width);
 	margin-inline: auto;
 	break-inside: avoid;
 

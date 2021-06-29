@@ -16,7 +16,6 @@
 		}
 
 		static function controller($page){
-			echo self::$controllerPath . $page. self::$extension;
 			return require_once self::$controllerPath . $page . self::$extension;
 		}
 

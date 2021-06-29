@@ -57,11 +57,10 @@
 				$stmt->bindValue(":$key", $value);
 			}
 
-			if(!$stmt->execute()){
-				echo "Erreur d'insertion";
-				return implode(" :: ", $stmt->errorInfo());
+			if($stmt->execute()){
+				return $this->c->lastInsertId();
 			}else{
-				return true;
+				return $stmt->errorInfo();				
 			}
 		}
 

@@ -1,11 +1,11 @@
 <?php 
 	namespace Stampee;
 
-	class LogoutController {
+	class DeconnexionController {
 			
 		public function index() {
 			session_destroy();
-			FileManager::redirect("xpets");
+			FileManager::redirect();
 		}
 	}
 ?>
