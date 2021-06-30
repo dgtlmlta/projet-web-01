@@ -1,0 +1,135 @@
+<form class="form-auction" action="/enchere/enregistrer" method="post" enctype="multipart/form-data">
+	<div class="auctionPanel flow-content ">
+		<div class="input-field">
+			<label for="inputDateStart">Date et heure de début de l'enchère&nbsp;: </label>
+			<div class="datetime-field">
+				<input name="dateStart" id="inputDateStart" type="date" {% if update %}value="{{ xpet.name }}"{% endif %} required value="2021-10-20">
+				<input type="time" name="timeStart" required value="00:00">
+			</div>
+		</div>
+
+		<div class="input-field">
+			<label for="inputDateEnd">Date et heure de fin de l'enchère&nbsp;: </label>
+			<div class="datetime-field">
+				<input name="dateEnd" id="inputDateEnd" type="date" {% if update %}value="{{ xpet.name }}"{% endif %} required value="2021-10-23">
+				<input type="time" name="timeEnd" required value="00:00">
+			</div>
+		</div>
+
+		<div class="input-field">
+			<label for="inputStartPrice">Prix de départ&nbsp;:</label>
+			<input id="inputStartPrice" name="startPrice" type="number" step="0.1" value="1,00" required>
+		</div>
+	</div>
+	
+	<div class="stampPanel flow-content ">
+		<div class="input-field">
+			<label for="inputTitle">Titre du timbre&nbsp;: </label>
+			<input name="title" id="inputTitle" type="text" value="Canada #158 1929 50c Dark Blue Bluenose, mint never hinged"{% if update %}value="{{ xpet.name }}"{% endif %} required>
+		</div>
+
+		<div class="input-field">
+			<label for="textDescription">Description du timbre&nbsp;: </label>
+			<textarea name="description" id="textDescription" required>Quite fresh and perfectly centered, extremely fine. A beautiful example of this lovely and popular engraved stamp. Accompanied by a 2020 Greene Foundation certificate.</textarea>
+		</div>
+
+		<div class="input-field">
+			<label for="inputYear">Année de parution du timbre&nbsp;: </label>
+			<input name="year" id="inputYear" type="number" min="1300" max="2040" step="1" value="2021" {% if update %}value="{{ xpet.name }}"{% endif %}>
+		</div>
+
+		<div class="input-field">
+			<label for="inputWidth">Largeur du timbre&nbsp; <small>(en millimètres)</small>: </label>
+			<input name="width" id="inputWidth" type="number" min="1" step="1" value="20" {% if update %}value="{{ xpet.name }}"{% endif %} required>
+		</div>
+
+		<div class="input-field">
+			<label for="inputHeight">Hauteur du timbre&nbsp; <small>(en millimètres)</small>: </label>
+			<input name="height" id="inputHeight" type="number" min="1" step="1" value="20" {% if update %}value="{{ xpet.name }}"{% endif %} required>
+		</div>
+
+		<div class="input-field">
+			<label for="inputColor">Couleur du timbre&nbsp;:</label>
+			<input name="color" id="inputColor" type="text" value="Bleu" {% if update %}value="{{ xpet.name }}"{% endif %} required>
+		</div>
+
+		<div class="input-field">
+			<label for="inputDenomination">Dénomination du timbre&nbsp;:</label>
+			<input name="denomination" id="inputDenomination" type="text" value="50 cents" {% if update %}value="{{ xpet.name }}"{% endif %} required>
+		</div>
+
+		<div class="input-field">
+			<label for="inputCountry">Pays émetteur&nbsp;:</label>
+			<input name="country" id="inputCountry" type="text" value="Canada" {% if update %}value="{{ xpet.name }}"{% endif %} required>
+		</div>
+
+		<div class="input-field">
+			<div class="checkbox-field">
+				<label for="checkboxIsCertified">Est-ce que le timbre est certifié&nbsp;?</label>
+				<input name="isCertified" id="checkboxIsCertified" type="checkbox" value="1" {% if update %}value="{{ xpet.name }}"{% endif %}>
+			</div>
+		</div>
+
+		<div class="input-field">
+			<label for="fileImage">Image principale&nbsp;: </label>
+			<input type="file" name="image" id="fileImage">
+		</div>
+
+		<div class="input-field">
+			<label for="selectCondition">Condition&nbsp;:</label>
+			<select name="conditionId" id="selectCondition">
+				{% if not update %}
+				<option value="" disabled selected>Choisir une condition ...</option>
+				{% endif %}
+				{% for condition in conditions %}
+				<option
+					value="{{ condition.id }}"
+					{% if update and condition.id == stamp.conditionId %}selected{% endif %}
+					title="{{ condition.description }}">
+					{{ condition.name }}
+				</option>
+				{% endfor %}
+			</select>
+		</div>
+
+		<div class="input-field">
+			<label for="selectGum">Qualité de gomme&nbsp;:</label>
+			<select name="gumId" id="selectGum">
+				{% if not update %}
+				<option value="" disabled selected>Choisir une qualité de gomme ...</option>
+				{% endif %}
+				{% for gum in gums %}
+				<option
+					value="{{ gum.id }}"
+					{% if update and gum.id == stamp.gumId %}selected{% endif %}
+					title="{{ gum.description }}">
+					{{ gum.name }}
+				</option>
+				{% endfor %}
+			</select>
+		</div>
+
+		<div class="input-field">
+			<label for="selectCentering">Qualité de cadrage&nbsp;:</label>
+			<select name="centeringId" id="select">
+				{% if not update %}
+				<option value="" disabled selected>Choisir une qualité de cadrage ...</option>
+				{% endif %}
+				{% for centering in centerings %}
+				<option
+					value="{{ centering.id }}"
+					{% if update and centering.id == stamp.centeringId %}selected{% endif %}
+					title="{{ centering.description }}">
+					{{ centering.name }}
+				</option>
+				{% endfor %}
+			</select>
+		</div>
+
+		<button type="submit">Publier l'enchère</button>
+		
+		{% if update %}
+		<button type="submit" name="delete" value="true">Effacer l'animal</button>
+		{% endif %}
+	</div>
+</form>

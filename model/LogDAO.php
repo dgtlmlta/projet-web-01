@@ -1,8 +1,6 @@
 <?php 
 	namespace Stampee;
 
-	FileManager::model("Gateway");
-
 	class LogDAO extends Gateway {
 		public function storeAccessLog($url, $ip, $userId) {
 			$bUrl = 

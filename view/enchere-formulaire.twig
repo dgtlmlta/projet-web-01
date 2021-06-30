@@ -1,0 +1,24 @@
+{% extends "@views/base-layout.twig" %}
+
+{% block pageTitle %}Formulaire d'enchère{% endblock %}
+
+{% block pageDescription %}Formulaire {{ pageAction }} d'une enchère.{% endblock %}
+
+{% block styles %}
+	{{ parent() }}
+	<link rel="stylesheet" href="/styles/components/form-auction.css">
+{% endblock %}
+
+{% block mainContent %}
+	<main class="content">
+	<h1>Formulaire {{ pageAction }}</h1>
+
+	{% if hasError %}
+	<pre>
+		{{ errors }}
+	</pre>	
+	{% endif %}
+	
+	{% include "@inc/form-auction.twig" %}
+	</main>
+{% endblock %}

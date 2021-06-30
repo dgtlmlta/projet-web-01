@@ -1,22 +1,41 @@
 :root {
 	--vPadding-fields: var(--gutter);
 	--hPadding-fields: var(--gutterDeci);
-
 }
+
 /* Éléments de formulaire généraux */
 form {
 	max-width: var(--text-max-width);
 }
 
-form :is(label, input) {
+form .input-field > :is(
+	label,
+	input,
+	textarea
+) {
 	display: block;
 	width: 100%;
+	max-width: 100%;
+}
+
+form :where(
+	.datetime-field,
+	.checkbox-field
+) {
+	display: flex;
+	gap: var(--gutterDeci);
+}
+
+form .datetime-field > :first-child {
+	flex-basis: 70%;
+	flex-grow: 1;
 }
 
 
 input,
 button,
 select,
+textarea,
 .cta {
 	padding-block: var(--vPadding-fields);
 	padding-inline: var(--hPadding-fields);
@@ -25,7 +44,8 @@ select,
 
 input,
 button,
-select {
+select,
+textarea {
 	border: none;
 	font-size: inherit;
 	font-family: inherit;
@@ -33,6 +53,10 @@ select {
 
 select {
 	width: 100%;
+}
+
+input[type="checkbox"] {
+	transform: scale(2);
 }
 
 summary {

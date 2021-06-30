@@ -8,7 +8,7 @@
 		static private $controllerPath = ROOTPATH . "/controller/";
 		static private $libPath = ROOTPATH . "/lib/";
 
-		static private $imagesDBPath = ROOTPATH . "/assets/img/xpet-db/";
+		static private $imagesDBPath = ROOTPATH . "/assets/img/stamp-db/";
 	
 
 		static function model($page){
@@ -27,9 +27,9 @@
 			header("Location: /" . $url);
 		}
 
-		static function storeImage($img, $petId) {
+		static function storeImage($img, $stampId) {
 			$parts = pathinfo($img["name"]);
-			$filename = self::$imagesDBPath . $petId . ".{$parts['extension']}";
+			$filename = self::$imagesDBPath . $stampId . ".{$parts['extension']}";
 			
 			if(move_uploaded_file($img["tmp_name"], $filename)) {
 				return $filename;

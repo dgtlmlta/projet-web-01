@@ -21,7 +21,7 @@
 
 			return ':' . implode(", :", array_keys($d));
 			
-		}
+		}		
 
 		function getUpdateString($d) {
 			$str = "";
@@ -118,13 +118,15 @@
 		}
 
 		function selectById($id) {
-			$stmt = $this->prepareStmt("SELECT * FROM $this->table WHERE $this->primaryKey = :id");
+			$stmt = $this->prepareStmt(
+				"SELECT *
+				FROM $this->table
+				WHERE $this->primaryKey = :id"
+			);
 
-			if($stmt->execute([":id" => $id]))
-				return $stmt->fetch();
-			else {
-				return false;
-			}
+			return ($stmt->execute([":id" => $id])) ?
+				$stmt->fetch() :
+				false;		
 		}
 
 		function selectByIdSlug($id, $slug) {
@@ -135,17 +137,15 @@
 					and $this->table.slug = :slug"
 			);
 			
-			if($stmt->execute(
+			return ($stmt->execute(
 				[
 					":id" => $id,
 					":slug" => $slug
 				]
-			)
-			) {
-				return $stmt->fetch();
-			} else {
-				return false;
-			};
+			)) ?
+				$stmt->fetch() :
+				false;
+			
 		}
 
 		function deleteById($id) {

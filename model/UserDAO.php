@@ -22,13 +22,14 @@
 		public function validateUser($u, $p) {
 			FileManager::lib("PasswordCrypt");
 			
-			if($user = $this->checkUserExist($u)) {
-				return (PasswordCrypt::checkPassword($p, $user->password)) ?
+			if(!$user = $this->checkUserExist($u)) 
+				return false;
+
+			return (PasswordCrypt::checkPassword($p, $user->password)) ?
 					$user :
 					false;
-			};
 
-			return false;
+			
 		}
 		
 	}

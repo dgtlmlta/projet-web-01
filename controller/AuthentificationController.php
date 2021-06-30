@@ -19,13 +19,13 @@
 			if($user = $userDAO->validateUser($_POST["username"], $_POST["password"])) {
 				SessionManager::initSession($user);
 				
-				if(!empty($_SESSION["referer"])) {
-					$ref = $_SESSION["referer"];
-					unset($_SESSION["referer"]);
-					FileManager::redirect(ltrim($ref, "/"));
-				} else {
+				if(empty($_SESSION["referer"]))
 					FileManager::redirect();
-				}
+				
+				$ref = $_SESSION["referer"];
+				unset($_SESSION["referer"]);
+				FileManager::redirect(ltrim($ref, "/"));
+				
 			} else {
 				echo "Nope";
 			}

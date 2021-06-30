@@ -1,0 +1,14 @@
+.form-auction {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--gutterHecto);
+	
+	max-width: 100%;
+}
+
+.form-auction > * {
+	flex-grow: 1;
+
+	min-width: 40ch;
+	margin-block-start: 0;
+}

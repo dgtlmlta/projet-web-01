@@ -25,7 +25,7 @@
 							<button class="white-overlay" type="button">
 								<span class="visually-hidden">Lancer la recherche</span>
 								<svg class="magnifying-glass-icon" width="16" height="16">
-									<use href="assets/img/magnifying-glass-icon.svg#magnifying-glass" />
+									<use href="/assets/img/magnifying-glass-icon.svg#magnifying-glass" />
 								</svg>
 							</button>
 						</div>
@@ -36,7 +36,7 @@
 				<button class="top-level-action" type="button">
 					<span>Actualités</span>
 					<svg class="down-arrow" width="16" height="16">
-						<use href="assets/img/down-arrow.svg#arrow" />
+						<use href="/assets/img/down-arrow.svg#arrow" />
 					</svg>
 				</button>
 				<ul aria-hidden="true">
@@ -50,7 +50,7 @@
 				<button class="top-level-action" type="button">
 					Contacts
 					<svg class="down-arrow" width="16" height="16">
-						<use href="assets/img/down-arrow.svg#arrow" />
+						<use href="/assets/img/down-arrow.svg#arrow" />
 					</svg>
 				</button>
 				<ul aria-hidden="true">
@@ -66,12 +66,12 @@
 				<button class="top-level-action" type="button">
 					<span>Salut, {{ userFirstName }} !</span>
 					<svg class="down-arrow" width="16" height="16">
-						<use href="assets/img/down-arrow.svg#arrow" />
+						<use href="/assets/img/down-arrow.svg#arrow" />
 					</svg>
 				</button>
 				<ul aria-hidden="true">
 					{% if isMember %}
-					<li><a href="#">Vendre un timbre</a></li>
+					<li><a href="/enchere/formulaire">Vendre un timbre</a></li>
 					<li><a href="#">Voir mon profil</a></li>	
 					{% endif %}
 
