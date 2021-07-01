@@ -8,8 +8,8 @@
 		static public function render($template, $data) {
 			
 			$loader = new \Twig\Loader\FilesystemLoader("view");
-			$loader->addPath(ROOTPATH . "view", "views");
-			$loader->addPath(ROOTPATH . "view/includes", "inc");
+			$loader->addPath(ROOTPATH . "/view", "views");
+			$loader->addPath(ROOTPATH . "/view/includes", "inc");
 
 			$twig = new \Twig\Environment(
 				$loader,

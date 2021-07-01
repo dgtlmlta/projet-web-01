@@ -5,7 +5,7 @@
 
 	define("NS", __NAMESPACE__ . "\\");
 	// Pour les require et include.
-	define("ROOTPATH", __DIR__ . "/");
+	define("ROOTPATH", __DIR__);
 	// Fingerprinting
 	define("SECRET_SPICE", md5($_SERVER['HTTP_USER_AGENT'] . $_SERVER["REMOTE_ADDR"] . "--éé--"));
 	

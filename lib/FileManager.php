@@ -7,8 +7,8 @@
 		static private $modelPath = ROOTPATH . "/model/";
 		static private $controllerPath = ROOTPATH . "/controller/";
 		static private $libPath = ROOTPATH . "/lib/";
-
-		static private $imagesDBPath = ROOTPATH . "/assets/img/stamp-db/";
+		static private $imagesDBPath = "/assets/img/stamps-db/";
+		static private $imagesDBFullPath = ROOTPATH . "/assets/img/stamps-db/";
 	
 
 		static function model($page){
@@ -29,10 +29,10 @@
 
 		static function storeImage($img, $stampId) {
 			$parts = pathinfo($img["name"]);
-			$filename = self::$imagesDBPath . $stampId . ".{$parts['extension']}";
+			$filename = self::$imagesDBFullPath . $stampId . ".{$parts['extension']}";
 			
 			if(move_uploaded_file($img["tmp_name"], $filename)) {
-				return $filename;
+				return self::$imagesDBPath . $stampId . ".{$parts['extension']}";
 			} else {
 				return false;
 			}

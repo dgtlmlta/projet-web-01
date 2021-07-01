@@ -72,13 +72,30 @@
 				die();
 			}
 
-			var_dump($stampLastInsertedId);
 			
+			// Table "image"
+			$imageData = [
+				"timeAdded"			=> getCurrentSQLDatetime(),
+				"title"				=> $_POST["title"],
+				"isMainImage"			=> 1,
+				"stampId"			=> $stampLastInsertedId
+			];
+
+			try {
+				$imageLastInsertedId = $imageDAO->insertImage($_FILES["mainImage"], $imageData);
+			} catch(\exception $e) {
+				var_dump($e);
+				var_dump($stampLastInsertedId);
+				$stampDAO->deleteById($stampLastInsertedId);
+				die();
+			}
+			
+
 			// Table "auction"
 			$auctionData = [
 				"timeStart" 		=> "{$_POST["dateStart"]} {$_POST["timeStart"]}",
 				"timeEnd" 			=> "{$_POST["dateEnd"]} {$_POST["timeEnd"]}",
-				"dateCreated" 		=> getCurrentSQLDatetime(),
+				"timeCreated" 		=> getCurrentSQLDatetime(),
 				"startPrice" 		=> $_POST["startPrice"],
 				// Par défaut, l'enchère est active
 				"isActive" 			=> 1,
@@ -86,22 +103,16 @@
 				"sellerId"			=> $_SESSION["userId"]
 			];
 
-			// Table "image"
-
-				
-			/* if(!is_array($result = $userDAO->insert($_POST))) {
-				FileManager::redirect("authentification");
-				exit();
+			try {
+				$auctionLastInsertedId = $auctionDAO->insert($auctionData);
+			} catch(\exception $e) {
+				var_dump($e);
+				$imageDAO->deleteById($imageLastInsertedId);
+				$stampDAO->deleteById($stampLastInsertedId);		
+				die();
 			}
-			
-			return TwigController::render(
-				"signup",
-				[
-					// Erreurs
-					"hasError" => true,
-					"errors" => $result
-				]
-			); */			
+
+			FileManager::redirect("enchere/$auctionLastInsertedId");						
 		}
 	}
 
