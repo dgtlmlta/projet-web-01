@@ -4,12 +4,22 @@
 
 	class AuctionDAO extends Gateway {
 		protected $table = "auction";		
-		private $baseSelectQuery = 
-			"SELECT xpet.name, xpet.id, xpet.description, xpet.classId, xpet.slug, xpet.superpowerId, xpet.teamId, xpet.imageUrl, team.name as teamName, team.slug as teamSlug, superpower.name as superpowerName, superpower.slug as superpowerSlug, class.name as class, class.slug as classSlug
-			from xpet
-			join class on class.id = xpet.classId
-			join team on team.id = xpet.teamId
-			join superpower on superpower.id = xpet.superpowerId";
+		private $baseSelectCardQuery = 
+			"SELECT 
+				auction.id as auctionId,
+				auction.timeStart,
+				auction.timeEnd,
+				auction.sellerId,
+				auction.startPrice,
+				stamp.title,
+				stamp.description,
+				stampImage.url as imageUrl
+			from auction
+			join stamp on stamp.id = auction.stampId
+			join stampImage on stampImage.stampId = stamp.id
+			where stampImage.isMainImage = 1
+				and timeStart < now()
+				and timeEnd > now()";
 
 		public function getAuctionById($id) {
 			$stmt = $this->prepareStmt( 
@@ -17,49 +27,28 @@
 				where $this->table.$this->primaryKey = :id"
 			);
 			
-			if($stmt->execute([":id" => $id]))
-				return $stmt->fetch();
-			else {
+			if(!$stmt->execute([":id" => $id]))
 				return false;
-			};
-		}
-
-		public function getXpetByIdSlug($id, $slug) {
-			$stmt = $this->prepareStmt( 
-				"$this->baseSelectQuery
-				where xpet.$this->primaryKey = :id
-					and xpet.slug = :slug"
-			);
 			
-			if($stmt->execute(
-				[
-					":id" => $id,
-					":slug" => $slug
-				]
-			)
-			) {
-				return $stmt->fetch();
-			} else {
-				return false;
-			};
+			
+			return $stmt->fetch();
 		}
 
-		public function getXpetsByCategoryId($cat, $id) {
-			$stmt = $this->prepareStmt( 
-				"$this->baseSelectQuery
-				where $cat.id = :id"					
-			);
+		public function getNewestAuctionCards($limit = null) {
+			$query = $this->baseSelectCardQuery;
 
-			if($stmt->execute(
-					[
-						":id" => $id
-					]
-				)
-			) {
-				return $stmt->fetchAll();
-			} else {
+			$query .= " order by timeStart DESC";
+
+			if($limit)
+				$query .= " limit $limit";
+			
+			$stmt = $this->prepareStmt($query);
+
+			if(!$stmt->execute()) 
 				return false;
-			};
+						
+			
+			return $stmt->fetchAll();		
 		}
 		
 	}

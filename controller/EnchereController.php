@@ -48,7 +48,7 @@
 
 			$auctionDAO = new AuctionDAO();
 			$stampDAO = new StampDAO();
-			$imageDAO = new ImageDAO();
+			$imageDAO = new StampImageDAO();
 
 			// Aiguiller les champs POST aux bonnes tables.
 

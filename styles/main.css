@@ -9,6 +9,7 @@
 @import url("hero.css");
 @import url("components/panel-suggestions.css");
 @import url("components/card.css");
+@import url("components/card-grid.css");
 
 /* Thème */
 @import url("theme.css");

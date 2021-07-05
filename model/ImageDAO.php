@@ -2,8 +2,8 @@
 
 	namespace Stampee;
 
-	class ImageDAO extends Gateway {
-		protected $table = "image";		
+	class StampImageDAO extends Gateway {
+		protected $table = "stampImage";		
 		
 		public function insertImage($image, $data) {
 			try {

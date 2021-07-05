@@ -1,0 +1,51 @@
+<article class="lot-card">
+	<picture>
+		<img src="{{ auction.imageUrl }}" alt="Timbre brun représentant un quelconque kaiser Autrichien">
+	</picture>
+	
+	<!-- info timbre -->
+	<div class="info flow-content">				
+		<header>
+			<div class="time-left">
+				<svg width="16" height="16">
+					<use href="assets/img/feather-core-clock.svg#clock" />
+				</svg>
+				{% set difference = date(auction.timeEnd).diff(date("now")) %}
+				<span>
+					{{ difference.days ? difference.days ~ "j" : ""}}
+					{{ difference.h ? difference.h ~ "h" : ""}}
+					{{ difference.i }}m
+				</span>
+			</div>
+			<h3>{{ auction.title }}</h3>
+		</header>
+	
+		<div class="toggle-favorite-wrapper">
+			<label class="toggle-favorite">
+				<input type="checkbox" class="visually-hidden" value="{{ auction.auctionId }}">
+				<svg class="favorite-icon" width="16" height="16">
+					<use href="assets/img/five_pointed_star_solid.svg#fav-star" />
+				</svg>
+				<span>Ajouter à vos favoris</span>
+			</label>
+		</div>						
+								
+		<div class="bidding-properties">
+			<div class="current-bid">
+				<span>Mise courante : </span>
+				{% set bid = highestBid ?: auction.startPrice %}
+				<span class="bid">{{ bid|number_format(2, ",") }} $CA</span>
+			</div>
+		</div>
+
+		<div class="card-actions">
+			<button class="place-your-bid" type="button">Placer une mise</button>
+			<a href="/enchere/fiche/{{ auction.auctionId }}" class="cta">Détails</a>
+		</div>
+	</div>
+	<!-- /info timbre -->
+
+	<div class="tags-display">
+		<span class="lords-pick">Choix du Lord</span>
+	</div>		
+</article>

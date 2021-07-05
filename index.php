@@ -3,7 +3,6 @@
 
 	session_start();
 
-	define("NS", __NAMESPACE__ . "\\");
 	// Pour les require et include.
 	define("ROOTPATH", __DIR__);
 	// Fingerprinting
@@ -17,7 +16,6 @@
 	FileManager::model("Gateway");
 	// FileManager::model("LogDAO");
 
-	
 	$uid = (isset($_SESSION["userId"])) ?
 		$_SESSION["userId"] :
 		null;
@@ -42,10 +40,16 @@
 	];
 	
 	if($url == "/"){
+		FileManager::model("AuctionDAO");
+
+		$auctionDAO = new AuctionDAO();
+
+		$cards = $auctionDAO->getNewestAuctionCards(3);
+
 		echo TwigController::render(
 			"index",
 			[
-				
+				"auctions" => $cards
 			]
 		);
 		exit();
@@ -58,11 +62,11 @@
 	
 	//recuperer le controleur
 	$controllerPath = __DIR__ . "/controller/" . ucfirst($requestUrl) . "Controller.php";
-	
+
 	if(file_exists($controllerPath)) {
 		FileManager::controller(ucfirst($requestUrl) . "Controller");
 	
-		$controllerName = NS . ucfirst($requestUrl).'Controller';
+		$controllerName = ucfirst($requestUrl).'Controller';
 		$controller = new $controllerName;
 
 		if(isset($url[1])) {

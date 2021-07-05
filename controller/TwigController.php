@@ -1,6 +1,8 @@
 <?php 
 
 	namespace Stampee;
+
+	use Twig\Extra\Intl\IntlExtension;
 	
 	class TwigController {
 		private static $ext = ".twig";
@@ -10,14 +12,16 @@
 			$loader = new \Twig\Loader\FilesystemLoader("view");
 			$loader->addPath(ROOTPATH . "/view", "views");
 			$loader->addPath(ROOTPATH . "/view/includes", "inc");
-
+			
 			$twig = new \Twig\Environment(
 				$loader,
 				array(
 					"auto_reload" => true,
-					"cache" => false
-				)
-			);
+					"cache" => false,
+					"debug" => true				)
+			);			
+
+			$twig->addExtension(new IntlExtension());
 
 			$twig->addGlobal("isLoggedIn", SessionManager::isLoggedIn());
 			$twig->addGlobal("isAdmin", SessionManager::isAdmin());

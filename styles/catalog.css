@@ -54,7 +54,7 @@
 	flex-grow: 1;
 }
 
-.item-listing.grid-view .grid {	
+.item-listing.grid-view .card-grid {	
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(var(--card-min-size), 1fr));
 	gap: var(--gutterHecto);
