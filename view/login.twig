@@ -6,6 +6,19 @@
 
 {% block mainContent %}
 	<main class="content login">
+	{% block breadcrumb %}
+	<nav class="breadcrumb" aria-label="Fil d'Ariane">
+		<div class="breadcrumb-level">
+			<a class="text-link" href="/">Accueil</a>
+			<svg class="separator" width="16" height="16">
+				<use href="assets/img/down-arrow.svg#arrow" />
+			</svg>
+		</div>
+
+		<span aria-current="page">Authentification</span>
+	</nav>
+	{% endblock %}
+	
 	<h1>Authentification</h1>
 	{% include "@inc/form-login.twig" %}
 	</main>

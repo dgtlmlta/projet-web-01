@@ -57,11 +57,11 @@
 				$stmt->bindValue(":$key", $value);
 			}
 
-			if($stmt->execute()){
-				return $this->c->lastInsertId();
-			}else{
-				return $stmt->errorInfo();				
+			if(!$stmt->execute()){
+				return $stmt->errorInfo();
 			}
+
+			return $this->c->lastInsertId();
 		}
 
 		function update($data, $conditions) {

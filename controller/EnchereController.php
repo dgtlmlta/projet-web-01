@@ -43,76 +43,102 @@
 			FileManager::model("AuctionDAO");
 			FileManager::model("ImageDAO");
 			FileManager::model("StampDAO");
-			FileManager::lib("dateFunctions");
-			FileManager::lib("stringFunctions");
 
 			$auctionDAO = new AuctionDAO();
 			$stampDAO = new StampDAO();
 			$imageDAO = new StampImageDAO();
 
 			// Aiguiller les champs POST aux bonnes tables.
-
 			// Table "stamp"
-			$stampData = [
-				"title"				=> $_POST["title"],
-				"description"		=> $_POST["description"],
-				"year"				=> $_POST["year"],
-				"width"				=> $_POST["width"],
-				"height"			=> $_POST["height"],
-				"color"				=> $_POST["color"],
-				"country"			=> $_POST["country"],
-				"denomination"		=> $_POST["denomination"],
-				"isCertified"		=> $_POST["isCertified"] ?? 0,
-				"conditionId"		=> $_POST["conditionId"],
-				"gumId"				=> $_POST["gumId"],
-				"centeringId"		=> $_POST["centeringId"]
-			];
+			$stampData = $this->extractStampColumnsFromData($_POST);
 
 			if(!$stampLastInsertedId = $stampDAO->insert($stampData)) {
 				die();
 			}
-
 			
 			// Table "image"
-			$imageData = [
-				"timeAdded"			=> getCurrentSQLDatetime(),
-				"title"				=> $_POST["title"],
-				"isMainImage"			=> 1,
-				"stampId"			=> $stampLastInsertedId
-			];
+			$imageData = $this->extractImageColumnsFromData($_POST, $stampLastInsertedId);
 
 			try {
 				$imageLastInsertedId = $imageDAO->insertImage($_FILES["mainImage"], $imageData);
 			} catch(\exception $e) {
-				var_dump($e);
-				var_dump($stampLastInsertedId);
 				$stampDAO->deleteById($stampLastInsertedId);
+				var_dump($e);
 				die();
-			}
-			
+			}			
 
 			// Table "auction"
-			$auctionData = [
-				"timeStart" 		=> "{$_POST["dateStart"]} {$_POST["timeStart"]}",
-				"timeEnd" 			=> "{$_POST["dateEnd"]} {$_POST["timeEnd"]}",
-				"timeCreated" 		=> getCurrentSQLDatetime(),
-				"startPrice" 		=> $_POST["startPrice"],
-				// Par défaut, l'enchère est active
-				"isActive" 			=> 1,
-				"stampId"			=> $stampLastInsertedId,
-				"sellerId"			=> $_SESSION["userId"]
-			];
+			$auctionData = $this->extractAuctionColumnsFromData($_POST, $stampLastInsertedId);
 
 			try {
 				$auctionLastInsertedId = $auctionDAO->insert($auctionData);
 			} catch(\exception $e) {
-				var_dump($e);
 				$imageDAO->deleteById($imageLastInsertedId);
-				$stampDAO->deleteById($stampLastInsertedId);		
+				$stampDAO->deleteById($stampLastInsertedId);
+				var_dump($e);		
 				die();
 			}
 
-			FileManager::redirect("enchere/$auctionLastInsertedId");						
+			FileManager::redirect("enchere/fiche/$auctionLastInsertedId");						
+		}
+
+		private function extractStampColumnsFromData($data) {
+			return [
+				"title"				=> $data["title"],
+				"description"		=> $data["description"],
+				"year"				=> $data["year"],
+				"width"				=> $data["width"],
+				"height"			=> $data["height"],
+				"color"				=> strtolower($data["color"]),
+				"country"			=> $data["country"],
+				"denomination"		=> $data["denomination"],
+				"isCertified"		=> $data["isCertified"] ?? 0,
+				"conditionId"		=> $data["conditionId"],
+				"gumId"				=> $data["gumId"],
+				"centeringId"		=> $data["centeringId"]
+			];
+		}
+
+		private function extractImageColumnsFromData($data, $id) {
+			return [
+				"timeAdded"			=> getCurrentSQLDatetime(),
+				"title"				=> $data["title"],
+				"isMainImage"		=> 1,
+				"stampId"			=> $id
+			];
+		}
+
+		private function extractAuctionColumnsFromData($data, $id) {
+			return [
+				"timeStart" 		=> "{$data["dateStart"]} {$data["timeStart"]}",
+				"timeEnd" 			=> "{$data["dateEnd"]} {$data["timeEnd"]}",
+				"timeCreated" 		=> getCurrentSQLDatetime(),
+				"startPrice" 		=> $data["startPrice"],
+				// Par défaut, l'enchère est active
+				"isActive" 			=> 1,
+				"stampId"			=> $id,
+				"sellerId"			=> $_SESSION["userId"]
+			];
+		}
+
+		public function fiche($id) {
+			FileManager::model("AuctionDAO");
+			FileManager::model("BidDAO");
+
+			$auctionDAO = new AuctionDAO();
+			$bidDAO = new BidDAO();
+
+			return TwigController::render(
+				"enchere-details",
+				[
+					// Textes
+					
+					// Items
+					"auction" => $auctionDAO->getAuctionById($id),
+					"highestBids" => $bidDAO->getHighestBidsByAuctionId($id, 5),
+					"auctions" => $auctionDAO->getNewestAuctionCards(4)
+				]
+			);
 		}
 	}
 

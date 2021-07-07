@@ -8,7 +8,7 @@
 		<header>
 			<div class="time-left">
 				<svg width="16" height="16">
-					<use href="assets/img/feather-core-clock.svg#clock" />
+					<use href="/assets/img/feather-core-clock.svg#clock" />
 				</svg>
 				{% set difference = date(auction.timeEnd).diff(date("now")) %}
 				<span>
@@ -24,7 +24,7 @@
 			<label class="toggle-favorite">
 				<input type="checkbox" class="visually-hidden" value="{{ auction.auctionId }}">
 				<svg class="favorite-icon" width="16" height="16">
-					<use href="assets/img/five_pointed_star_solid.svg#fav-star" />
+					<use href="/assets/img/five_pointed_star_solid.svg#fav-star" />
 				</svg>
 				<span>Ajouter à vos favoris</span>
 			</label>
@@ -33,7 +33,7 @@
 		<div class="bidding-properties">
 			<div class="current-bid">
 				<span>Mise courante : </span>
-				{% set bid = highestBid ?: auction.startPrice %}
+				{% set bid = auction.highestBid ?: auction.startPrice %}
 				<span class="bid">{{ bid|number_format(2, ",") }} $CA</span>
 			</div>
 		</div>

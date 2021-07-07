@@ -116,8 +116,8 @@
                 data.zoomedImg.element.style.width = options.zoomWidth + 'px';
                 data.zoomedImg.element.style.height = data.sourceImg.element.style.height;
             } else {
-                data.zoomedImg.element.style.width = '200%';
-                data.zoomedImg.element.style.height = '200%';
+                data.zoomedImg.element.style.width = '100%';
+                data.zoomedImg.element.style.height = '100%';
             }
         }
 

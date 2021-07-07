@@ -1,0 +1,68 @@
+<div class="panel-bidding flow-content">
+	<div class="panel-time-remaining">
+		<div class="time-left">
+			<svg width="16" height="16">
+				<use href="/assets/img/feather-core-clock.svg#clock"/>
+			</svg>
+			{% set difference = date(auction.timeEnd).diff(date("now")) %}
+			<span>
+				{{ difference.days ? difference.days ~ "j" : ""}}
+				{{ difference.h ? difference.h ~ "h" : ""}}
+				{{ difference.i }}m
+			</span>
+		</div>
+	</div>
+
+	<div class="add-to-favorites">
+		<label class="toggle-favorite">
+			<input type="checkbox" class="visually-hidden">
+			<svg class="favorite-icon" width="16" height="16">
+				<use href="/assets/img/five_pointed_star_solid.svg#fav-star"/>
+			</svg>
+			<span>Ajouter à vos favoris</span>
+		</label>
+	</div>
+
+	<div class="current-bid">
+		<span>Mise courante&nbsp;:</span>
+		{% set currentBid = highestBids[0].amount ?: auction.startPrice %}
+		<span class="bid">{{ currentBid|number_format(2, ",") }}
+			$CA</span>
+	</div>
+
+	<form class="place-bid" name="biddingForm">
+		<label for="inputBid">Votre mise&nbsp;:</label>
+		<div class="input-field">
+			<input id="inputBid" type="number" name="bidAmount" min="{{ currentBid }}">
+			<button class="place-your-bid" name="submitBid" type="button" data-auction-id="{{ auction.auctionId }}">Placez votre mise</button>
+		</div>
+	</form>
+
+	<div class="panel-actions">
+		<div class="ask-seller">
+			<button type="button">Posez une question au vendeur</button>
+		</div>
+	</div>
+
+	<div class="panel-faq flow-content">
+		<h3>Questions fréquentes</h3>
+
+		<details>
+			<summary>Comment placer une mise ?</summary>
+
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero fuga sunt, minus quos veritatis corporis excepturi modi voluptas, aperiam eveniet voluptate provident quis nobis, maxime placeat voluptatibus dolorem corrupti sequi?</p>
+		</details>
+
+		<details>
+			<summary>Combien coûte la livraison ?</summary>
+
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero fuga sunt, minus quos veritatis corporis excepturi modi voluptas, aperiam eveniet voluptate provident quis nobis, maxime placeat voluptatibus dolorem corrupti sequi?</p>
+		</details>
+
+		<details>
+			<summary>Qui peut vendre ?</summary>
+
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero fuga sunt, minus quos veritatis corporis excepturi modi voluptas, aperiam eveniet voluptate provident quis nobis, maxime placeat voluptatibus dolorem corrupti sequi?</p>
+		</details>
+	</div>
+</div>

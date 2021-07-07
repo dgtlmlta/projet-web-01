@@ -12,8 +12,14 @@
 	require_once __DIR__ . '/vendor/autoload.php';
 	
 	FileManager::controller("TwigController");
+
 	FileManager::lib("SessionManager");
+	FileManager::lib("dateFunctions");
+	FileManager::lib("stringFunctions");
+
+	// Classe parent de tous les DAO.
 	FileManager::model("Gateway");
+	
 	// FileManager::model("LogDAO");
 
 	$uid = (isset($_SESSION["userId"])) ?
@@ -36,7 +42,8 @@
 	// Pages à ne pas inclure comme referer
 	$noref = [
 		"authentification",
-		"inscription"
+		"inscription",
+		"mise"
 	];
 	
 	if($url == "/"){
@@ -44,12 +51,10 @@
 
 		$auctionDAO = new AuctionDAO();
 
-		$cards = $auctionDAO->getNewestAuctionCards(3);
-
 		echo TwigController::render(
 			"index",
 			[
-				"auctions" => $cards
+				"auctions" => $auctionDAO->getNewestAuctionCards(3)
 			]
 		);
 		exit();
@@ -63,35 +68,36 @@
 	//recuperer le controleur
 	$controllerPath = __DIR__ . "/controller/" . ucfirst($requestUrl) . "Controller.php";
 
-	if(file_exists($controllerPath)) {
-		FileManager::controller(ucfirst($requestUrl) . "Controller");
 	
-		$controllerName = ucfirst($requestUrl).'Controller';
-		$controller = new $controllerName;
+	if(!file_exists($controllerPath)) {
+		FileManager::redirect();
+		die();
+	}
+	
+	FileManager::controller(ucfirst($requestUrl) . "Controller");
 
-		if(isset($url[1])) {
-			$id = null;
+	$controllerName = __NAMESPACE__ . "\\" . ucfirst($requestUrl).'Controller';
 
-			if(is_numeric($url[1]) && isset($url[2])) {
-				echo $controller->index($url[1], $url[2]);
-			} else {
-				$method = $url[1];
+	$controller = new $controllerName;
+	
+	if(!isset($url[1])) {
+		echo $controller->index();
+		die();
+	}
 
-				if(isset($url[2]) && is_numeric($url[2])) {
-					$id = $url[2];
-				}
-				
-				if(method_exists($controller, $method)) {
-					echo $controller->$method();		
-				} else {
-					FileManager::redirect();	
-				}
-			}				
-		} else {
-			echo $controller->index();
-		}			
-	} else {
+	$method = $url[1];
+
+	// Si la méthode du contrôleur n'existe pas, rediriger.
+	if(!method_exists($controller, $method)) {
 		FileManager::redirect();
 	}
 
+	if(!isset($url[2])) {
+		echo $controller->$method();
+		die();
+	}
+		
+	$id = $url[2];
+
+	echo $controller->$method($id);				
 ?>

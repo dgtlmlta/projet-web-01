@@ -1,0 +1,67 @@
+{% extends "@views/base-layout.twig" %}
+
+{% block pageTitle %}{{ auction.title }}{% endblock %}
+
+{% block pageDescription %}Formulaire {{ pageAction }} d'une enchère.{% endblock %}
+
+{% block styles %}
+	{{ parent() }}
+	<link rel="stylesheet" href="/styles/product.css">
+	<link rel="stylesheet" media="screen and (max-width: 990px)" href="/styles/product-to-990px.css">
+	<link rel="stylesheet" media="screen and (max-width: 540px)" href="/styles/product-to-540px.css">	
+{% endblock %}
+
+{% block scripts %}
+	{{ parent() }}
+	<script type="module" src="/scripts/stampeeScript.js"></script>
+	<script src="/scripts/modules/js-image-zoom.js"></script>
+	<script type="module" src="/scripts/zoomer.js"></script>
+{% endblock %}
+
+{% block mainContent %}
+	<main class="content details">
+		
+		{% block breadcrumb %}
+		<nav class="breadcrumb" aria-label="Fil d'Ariane">
+			<div class="breadcrumb-level">
+				<a class="text-link" href="/">Accueil</a>
+				<svg class="separator" width="16" height="16">
+					<use href="/assets/img/down-arrow.svg#arrow" />
+				</svg>
+			</div>
+
+			<div class="breadcrumb-level">
+				<a class="text-link" href="/catalogue">Catalogue</a>
+				<svg class="separator" width="16" height="16">
+					<use href="/assets/img/down-arrow.svg#arrow" />
+				</svg>
+			</div>
+
+			<span aria-current="page">{{ auction.title }}</span>
+		</nav>
+		{% endblock %}
+	
+		<h1>{{ auction.title }}</h1>
+
+		<!-- panneau entier produit -->
+		<div class="product">
+			<div class="product-grid">
+				{% include "@inc/details/panel-image.twig" %}
+
+				{% include "@inc/details/panel-summary.twig" %}
+
+				{% include "@inc/details/panel-stamp-details.twig" %}
+
+				{% include "@inc/details/panel-bidding.twig" %}
+			</div>
+		</div>
+		<!-- /panneau entier produit -->
+
+		<section class="panel-suggestions flow-content">
+			<h2>Autres items suggérés</h2>
+	
+			{% include "@inc/card-grid.twig" %}
+		</section>
+	</main>
+
+{% endblock %}

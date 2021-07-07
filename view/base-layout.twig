@@ -20,10 +20,7 @@
 		{% endblock %}
 		
 		<!-- Scripts -->
-		{% block  scripts %}
-		<script src="/scripts/modules/js-image-zoom.js"></script>
-		<script src="/scripts/zoomer.js" defer></script>
-		
+		{% block  scripts %}		
 		<script type="module" src="/scripts/script.js"></script>
 		{% endblock %}
 		
@@ -38,7 +35,13 @@
 		{% include "includes/nav-primary.twig" %}
 		{% endblock %}
 
-		{% block mainContent %}			
+		{% block mainContent %}
+			{% block breadcrumb %}	
+			{% endblock %}
+		{% endblock %}
+
+		{% block mobileNav %}
+		{% include "@inc/nav-mobile.twig" %}
 		{% endblock %}
 		
 		<footer></footer>	

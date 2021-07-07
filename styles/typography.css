@@ -61,13 +61,9 @@ html {
 
 h1 {
 	font-size: var(--font-scaling-mega);
-	/* font-size: clamp(
-		var(--font-size-initial) * var(--fontScalingMega) / var(--font-scale),
-		var(--font-base) * var(--fontScalingMega) / var(--font-scale),
-		var(--font-size-initial) * var(--fontScalingMega)); */
 	line-height: 1.15em;
 
-	max-width: 25ch;
+	max-width: 20ch;
 }
 
 h2,

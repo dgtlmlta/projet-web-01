@@ -37,7 +37,9 @@
 
 
 
-
+.product p {
+	margin-inline: 0;
+}
 
 .product .panel-main-image picture {
 	display: block;

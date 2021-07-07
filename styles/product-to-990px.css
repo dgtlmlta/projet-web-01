@@ -9,3 +9,7 @@
 		/ 1fr		1fr;
 	gap: var(--grid-gap);
 }
+
+.product-grid .panel-main-image {
+	justify-self: center;
+}

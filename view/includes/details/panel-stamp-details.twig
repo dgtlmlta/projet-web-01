@@ -1,0 +1,62 @@
+<div class="panel-stamp-details">
+	<section class="flow-content beige-box">
+		<h3>Fiche détaillée</h3>
+		<dl class="stamp-details flow-content">
+			<div>
+				<dt>Condition</dt>
+				<dd>{{ auction.conditionLabel }}</dd>
+			</div>
+			
+			<div>
+				<dt>Certification</dt>
+				<dd>{{ auction.stampIsCertified ? "Certifié" : "Non certifié" }}</dd>
+			</div>
+
+			<div>
+				<dt>Pays</dt>
+				<dd>
+					<a class="text-link" href="/catalogue/pays/{{ auction.stampCountry|lower }}">{{ auction.stampCountry }}</a>
+				</dd>
+			</div>
+			
+			<div>
+				<dt>Année de parution</dt>
+				<dd>
+					<a class="text-link" href="/catalogue/annee/{{ auction.stampYear }}">{{ auction.stampYear }}</a>
+				</dd>
+			</div>
+
+			<div>
+				<dt>Cadrage</dt>
+				<dd>{{ auction.centeringLabel }}</dd>
+			</div>
+
+			<div>
+				<dt>Adhésif</dt>
+				<dd>{{ auction.gumLabel }}</dd>
+			</div>
+
+			<div>
+				<dt>Largeur</dt>
+				<dd>{{ auction.stampWidth }} mm</dd>
+			</div>
+
+			<div>
+				<dt>Hauteur</dt>
+				<dd>{{ auction.stampHeight }} mm</dd>
+			</div>
+
+			<div>
+				<dt>Couleur</dt>
+				<dd>
+					<a class="text-link" href="/catalogue/couleur/{{ auction.stampColor }}">{{ auction.stampColor|capitalize }}</a>
+				</dd>
+			</div>
+
+			<div>
+				<dt>Dénomination</dt>
+				<dd>{{ auction.stampDenomination }}</dd>
+			</div>
+		</dl>
+	</section>
+</div>
