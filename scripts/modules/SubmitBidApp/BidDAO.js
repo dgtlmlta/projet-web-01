@@ -10,6 +10,6 @@ export default class BidDAO extends BaseDAO {
 			}
 		});
 
-		return this.fetchStuff("/mise/ajouter");
+		return this.fetchStuff("/mise/ajoutFetch");
 	}
 }

@@ -1,5 +1,4 @@
 export default class BaseDAO {
-	gateway = "/scripts/server/FetchCodec.php";
 	data = {
 		method: "POST",
 		headers: {

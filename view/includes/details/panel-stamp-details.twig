@@ -15,7 +15,7 @@
 			<div>
 				<dt>Pays</dt>
 				<dd>
-					<a class="text-link" href="/catalogue/pays/{{ auction.stampCountry|lower }}">{{ auction.stampCountry }}</a>
+					<a class="text-link" href="/catalogue/pays/{{ auction.stampCountry|lower|url_encode }}">{{ auction.stampCountry }}</a>
 				</dd>
 			</div>
 			

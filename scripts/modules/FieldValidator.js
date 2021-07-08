@@ -18,25 +18,28 @@ export default class FieldValidator {
 			e.preventDefault();
 			if(this.hasError)
 				this.cleanErrors();
-			this.throwError(e.target);
+			this.throwError();
 		});
 	}
 
-	throwError = i => {
+	throwError = (customMessage = null) => {
 		this.hasError = true;
 
-		let
-			// Créer le message d'erreur
-			errMsg = this.getError(i), 
-			errElement = buildTextElement("small", errMsg);
-
-		this.errorMsgElement = errElement;
-
-		// Injecter le message d'erreur
-		this.fieldBlock.append(errElement);
-		
 		// Basculer la classe d'erreur
 		this.fieldBlock.classList.toggle("error");
+
+		// Créer le message d'erreur
+		const errMsg = customMessage ?? this.getError(this.field)			
+
+		this.errorMsgElement = this.drawMessage(errMsg);
+	}
+
+	drawMessage = (message) => {
+		const msgElement = buildTextElement("small", message);
+		// Injecter le message d'erreur
+		this.fieldBlock.append(msgElement);
+
+		return msgElement;
 	}
 
 	getError = (i) => {
@@ -53,7 +56,7 @@ export default class FieldValidator {
 			return `Le nombre de joueurs ne doit pas dépasser ${i.getAttribute("max")}`;
 
 		if(i.validity.rangeUnderflow) 
-			return `La  mise ne doit pas être inférieure à ${i.getAttribute("min")}`;
+			return `La  mise ne doit pas être inférieure à ${i.getAttribute("min")} $`;
 	}
 
 	cleanErrors = () => {

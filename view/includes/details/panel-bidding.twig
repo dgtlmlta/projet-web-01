@@ -33,7 +33,7 @@
 	<form class="place-bid" name="biddingForm">
 		<label for="inputBid">Votre mise&nbsp;:</label>
 		<div class="input-field">
-			<input id="inputBid" type="number" name="bidAmount" min="{{ currentBid }}">
+			<input id="inputBid" type="number" name="bidAmount" min="{{ currentBid }}" required>
 			<button class="place-your-bid" name="submitBid" type="button" data-auction-id="{{ auction.auctionId }}">Placez votre mise</button>
 		</div>
 	</form>

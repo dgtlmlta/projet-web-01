@@ -41,8 +41,7 @@
 	
 	// Pages à ne pas inclure comme referer
 	$noref = [
-		"authentification",
-		"inscription",
+		"membre",
 		"mise"
 	];
 	

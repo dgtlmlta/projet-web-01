@@ -31,9 +31,7 @@ class InscriptionController {
 			$dt = new DateTime();
 			$_POST["dateCreated"] = $dt->format("Y-m-d H:i:s");
 
-			if(!is_array($result = $userDAO->insert($_POST))) {
-				FileManager::redirect("authentification");
-			} else {
+			if(is_array($result = $userDAO->insert($_POST))) {
 				return TwigController::render(
 					"signup",
 					[
@@ -41,8 +39,10 @@ class InscriptionController {
 						"hasError" => true,
 						"errors" => $result
 					]
-				);
-			}			
+				);				
+			}
+
+			FileManager::redirect("authentification");
 		}
 	}
 

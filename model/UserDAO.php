@@ -27,9 +27,7 @@
 
 			return (PasswordCrypt::checkPassword($p, $user->password)) ?
 					$user :
-					false;
-
-			
+					false;			
 		}
 		
 	}
