@@ -10,4 +10,8 @@ export default class BidFieldValidator extends FieldValidator {
 	constructor(field) {
 		super(field);
 	}
+
+	updateMinAmount = (newAmount) => {
+		this.field.setAttribute("min", newAmount);
+	}
 }

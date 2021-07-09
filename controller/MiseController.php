@@ -13,12 +13,16 @@
 
 			$json = file_get_contents('php://input');
 			$data = json_decode($json)->payload;
-			
+
 			if(!$data->amount) {
 				return $this->throwFetchError("empty amount");
 			}
 
-			if(!((double) $data->amount > (double) $bidDAO->getTopBidByAuctionId($data->auctionId)->bidAmount)) {
+			$currentBid = ($topBid = $bidDAO->getTopBidByAuctionId($data->auctionId)) ?
+				$topBid->bidAmount :
+				$bidDAO->getStartPriceByAuctionId($data->auctionId);
+
+			if(!((double) $data->amount > (double) $currentBid)) {
 				return $this->throwFetchError("amount too low");
 			}
 
@@ -33,14 +37,14 @@
 				$insertedId = $bidDAO->insert($insertData);
 			}
 			catch(\exception $exception) {
-				echo $this->throwFetchError("insert error");
-				return;
+				return $this->throwFetchError("insert error");
 			}
 
 			return json_encode(
 				[
 					"status"		=> "success",
-					"lastInsertId"	=> $insertedId
+					"lastInsertId"	=> $insertedId,
+					"test"			=> $currentBid
 				]
 			);
 	

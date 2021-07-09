@@ -69,6 +69,11 @@
 
 			FileManager::redirect("authentification");
 		}
+
+		public function deconnexion() {
+			session_destroy();
+			FileManager::redirect();
+		}
 	}
 
 ?>

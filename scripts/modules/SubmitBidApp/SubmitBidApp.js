@@ -1,8 +1,9 @@
 export default class SubmitBidApp {
-	constructor(validator, bidInput, submitButton, bidDAO) {
+	constructor(validator, form, bidDAO, uiManager) {
+		this.ui = uiManager;
 		this.validator = validator;
-		this.bidInput = bidInput;
-		this.submitButton = submitButton;
+		this.bidInput = form.bidAmount;
+		this.submitButton = form.submitBid;
 		this.bidDAO = bidDAO;
 
 		this.initFormPlaceBidButton(this.submitButton);
@@ -11,20 +12,22 @@ export default class SubmitBidApp {
 	initFormPlaceBidButton = (button) => {
 		button.addEventListener('click', (e) => {
 			const
-				amountField = e.target.closest("form").bidAmount,
 				auctionId = e.target.dataset.auctionId;
 			
-			if(!amountField.reportValidity()) {
+			if(!this.bidInput.reportValidity()) {
+				console.log("trop bas");
 				return;
 			}
 
-			this.bidDAO.placeBid(auctionId, amountField.value)
+			const bidAmount = this.bidInput.value
+
+			this.bidDAO.placeBid(auctionId, bidAmount)
 				.then(data => {
 					if(data.status !== "success") {
 						throw new Error(data.message);
 					}
 
-					this.confirmBid();
+					this.confirmBid(bidAmount);
 				})
 				.catch(error => {
 					this.handleBidInsertError(error.message);
@@ -32,8 +35,11 @@ export default class SubmitBidApp {
 		});
 	}
 
-	confirmBid = () => {
-		this.validator.drawMessage("Votre mise a été reçue, merci !")
+	confirmBid = (newAmount) => {
+		this.bidInput.value = "";
+		this.validator.drawMessage("Votre mise a été reçue, merci !");
+		this.validator.updateMinAmount(newAmount);
+		this.ui.updateCurrentBid(newAmount);
 	}
 
 	handleBidInsertError = (message) => {

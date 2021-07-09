@@ -11,6 +11,7 @@
 		"image	summary	bidding"
 		"image	details	bidding"
 		"...	details	bidding"
+		"...	...		bidding"
 		/ 1fr		2fr		1fr;
 	gap: var(--grid-gap);
 }

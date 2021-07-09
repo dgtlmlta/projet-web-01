@@ -3,7 +3,7 @@ import { buildTextElement } from "./DOMBuilder.js";
 export default class FieldValidator {
 	
 	fieldBlockClass = ".input-field";
-	errorMsgElement;
+	messageElement;
 	hasError = false;
 
 	constructor(f) {
@@ -16,8 +16,6 @@ export default class FieldValidator {
 	init = () => {
 		this.field.addEventListener('invalid', e => {
 			e.preventDefault();
-			if(this.hasError)
-				this.cleanErrors();
 			this.throwError();
 		});
 	}
@@ -26,18 +24,22 @@ export default class FieldValidator {
 		this.hasError = true;
 
 		// Basculer la classe d'erreur
-		this.fieldBlock.classList.toggle("error");
+		this.fieldBlock.classList.toggle("error", this.hasError);
 
 		// Créer le message d'erreur
 		const errMsg = customMessage ?? this.getError(this.field)			
 
-		this.errorMsgElement = this.drawMessage(errMsg);
+		this.messageElement = this.drawMessage(errMsg);
 	}
 
 	drawMessage = (message) => {
+		if(this.messageElement)
+			this.cleanMessage();
+		
 		const msgElement = buildTextElement("small", message);
 		// Injecter le message d'erreur
 		this.fieldBlock.append(msgElement);
+		this.messageElement = msgElement;
 
 		return msgElement;
 	}
@@ -59,10 +61,8 @@ export default class FieldValidator {
 			return `La  mise ne doit pas être inférieure à ${i.getAttribute("min")} $`;
 	}
 
-	cleanErrors = () => {
-		this.fieldBlock.classList.toggle("error");
-		
-		if(this.errorMsgElement)
-			this.errorMsgElement.remove();
+	cleanMessage = () => {
+		this.fieldBlock.classList.toggle("error", !this.hasError);		
+		this.messageElement.remove();
 	}
 }

@@ -24,6 +24,20 @@
 				return $stmt->fetch();
 		}
 
+		public function getStartPriceByAuctionId($id) {
+			$stmt = $this->prepareStmt( 
+				"SELECT
+					auction.startPrice
+				from
+					auction
+				where auction.id = :id");
+
+				if(!$stmt->execute([":id" => $id]))
+					return false;
+
+				return $stmt->fetch()->startPrice;
+		}
+
 		public function getHighestBidsByAuctionId($id, $limit = 3) {
 			$stmt = $this->prepareStmt( 
 				"SELECT
