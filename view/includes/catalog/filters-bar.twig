@@ -1,0 +1,145 @@
+<div class="filters-bar">
+	<!-- <h2>Filtres</h2> -->
+
+	<form name="filters" action="#" class="flow-content">
+		<fieldset>
+			<details>
+				<summary>Condition</summary>
+
+				<div class="inputs">
+					<a class="more-info text-link" href="#">Nos critères d'évaluation</a>
+
+					{% for stampCondition in stampConditions %}
+					<label title="{{ stampCondition.description }}">
+						<input name="stampConditions[]" type="checkbox" value="{{ stampCondition.id }}">
+						<span>{{ stampCondition.name }}</span>
+					</label>
+					{% endfor %}
+				</div>
+			</details>
+		</fieldset>
+
+		<fieldset>
+			<details>
+				<summary>Alignement central</summary>
+
+				<div class="inputs">
+					{% for centeringCondition in centeringConditions %}
+					<label title="{{ centeringCondition.description }}">
+						<input name="centeringConditions[]" type="checkbox" value="{{ centeringCondition.id }}">
+						<span>{{ centeringCondition.name }}</span>
+					</label>
+					{% endfor %}
+				</div>
+			</details>
+		</fieldset>
+
+		<fieldset>
+			<details>
+				<summary>Gomme</summary>
+
+				<div class="inputs">
+					{% for gumCondition in gumConditions %}
+					<label title="{{ gumCondition.description }}">
+						<input name="gumConditions[]" type="checkbox" value="{{ gumCondition.id }}">
+						<span>{{ gumCondition.name }}</span>
+					</label>
+					{% endfor %}
+				</div>
+			</details>
+		</fieldset>
+
+		<fieldset>
+			<details>
+				<summary>
+					Prix
+				</summary>
+
+				<div class="inputs">
+					<label>
+						Montant minimum :
+						<input type="number">
+					</label>
+
+					<label>
+						Montant maximum
+						<input type="number">
+					</label>
+				</div>
+			</details>
+		</fieldset>
+
+		<fieldset>
+			<details>
+				<summary>
+					Thème
+				</summary>
+
+				<div class="inputs">
+					<label>
+						<input type="checkbox">
+						Animaux
+					</label>
+
+					<label>
+						<input type="checkbox">
+						Guerre
+					</label>
+					<label>
+						<input type="checkbox">
+						Personnalités
+					</label>
+
+					<label>
+						<input type="checkbox">
+						Culture populaire
+					</label>
+
+					<label>
+						<input type="checkbox">
+						Moyens de transport
+					</label>
+				</div>
+			</details>
+		</fieldset>
+
+		<fieldset>
+			<details>
+				<summary>
+					Certification
+				</summary>
+
+				<div class="inputs">
+					<a class="more-info text-link" href="#">Qu'est-ce que la certification&nbsp;?</a>
+
+					<label>
+						<input type="checkbox">
+						Certifiés
+					</label>
+
+					<label>
+						<input type="checkbox">
+						Non-certifiés
+					</label>
+				</div>
+			</details>
+		</fieldset>
+
+		<div class="filters-actions">
+			<button type="submit">Appliquer les filtres</button>
+			<button type="reset">Réinitialiser les filtres</button>
+		</div>
+	</form>
+
+	<!-- Navigation adaptative -->
+	<div class="show-filters-button">
+		<button>
+			<span>
+				Filtres
+				<svg class="right-arrow" width="16" height="16">
+					<use href="assets/img/down-arrow.svg#arrow"/>
+				</svg>
+			</span>
+		</button>
+	</div>
+</div>

@@ -1,0 +1,109 @@
+{% extends "@views/base-layout.twig" %}
+
+{% block pageTitle %}Catalogue des enchères{% endblock %}
+
+{% block pageDescription %}Catalogue des enchères présentement en cours.{% endblock %}
+
+{% block styles %}
+	{{ parent() }}
+	<link rel="stylesheet" href="/styles/catalog.css">
+	<link rel="stylesheet" media="screen and (max-width: 990px)" href="/styles/catalog-to-990px.css">
+	<link rel="stylesheet" media="screen and (max-width: 540px)" href="/styles/catalog-to-540px.css">	
+{% endblock %}
+
+
+
+{% block mainContent %}
+<!-- contenu -->
+<main class="content">
+	<!-- fil d'Ariane -->
+	<nav class="breadcrumb" aria-label="Fil d'Ariane">
+		<a class="text-link" href="/">Accueil</a>
+		
+		<svg class="separator" width="16" height="16">
+			<use href="/assets/img/down-arrow.svg#arrow" />
+		</svg>
+		{% if breadcrumb %}
+		<a href="/catalogue">Catalogue des enchères</a>
+
+		<svg class="separator" width="16" height="16">
+			<use href="/assets/img/down-arrow.svg#arrow" />
+		</svg>
+
+		<span aria-current="page">{{ breadcrumb }}</span>
+		{% else %}
+		<span aria-current="page">Catalogue des enchères</span>
+		{% endif %}
+	</nav>
+
+	<h1>Catalogue des enchères</h1>
+	<!-- panneau entier catalogue avec options de liste et recherche -->
+	<div class="catalog-panel">
+		{% embed "@inc/catalog/filters-bar.twig" %}	
+		{% endembed %}
+
+		<div class="item-listing grid-view flow-content">
+			<div class="toolbar">
+				<div class="choose-grid-display">
+					<label>Type d'affichage</label>
+					<div class="grid-display-options">
+						<button type="button" disabled>
+							<svg class="grid-icon" width="16" height="16">
+								<use href="/assets/img/grid-icon.svg#grid-icon"/>
+							</svg>
+							<span>Grille</span>
+						</button>
+						<button type="button">
+							<svg class="grid-icon" width="16" height="16">
+								<use href="/assets/img/list-icon.svg#list-icon"/>
+							</svg>
+							<span>Liste</span>
+						</button>
+					</div>
+				</div>
+
+				<div class="choose-sort-order">
+					<label>Trier par</label>
+					<div class="sort-order">
+						<select name="sortOrder">
+							<option value="" selected disabled>Choisir un tri</option>
+							<option value="">Prix - min. à max.</option>
+							<option value="">Prix - max. à min.</option>
+							<option value="">Date de parution - récents</option>
+							<option value="">Date de parution - anciens</option>
+							<option value="">Favoris</option>
+							<option value="">Pays</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="search">
+					<label>Recherche</label>
+
+					<div class="search-box">
+						<input type="text" aria-label="Recherche" placeholder="Votre recherche...">
+						<button type="button">
+							<span class="visually-hidden">Lancer la recherche</span>
+							<svg class="magnifying-glass-icon" width="16" height="16">
+								<use href="/assets/img/magnifying-glass-icon.svg#magnifying-glass"/>
+							</svg>
+						</button>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Grille de cartes -->
+			<div class="grid">
+				{% if auctions is not empty %}
+					{% include "@inc/card-grid.twig" %}	
+				{% else %}
+				<span>Aucun résultats correspondant à votre recherche "{{ searchString }}".</span>
+				{% endif %}				
+			</div>
+			<!-- /grille de cartes -->
+
+		</div>
+	</div>
+	<!-- /panneau entier catalogue -->
+</main>
+{% endblock %}

@@ -17,18 +17,20 @@
 
 .catalog-panel .toolbar {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-between;
-	gap: var(--gutter);
+	gap: var(--gutterHecto);
 }
 
 .catalog-panel .toolbar > * {
 	flex-basis: calc(100% / 3);
 	flex-grow: 1;
+	min-width: var(--card-min-size);
 }
 
-.catalog-panel .search {
+/* .catalog-panel .search {
 	max-width: 35ch;
-}
+} */
 
 .catalog-panel .grid-display-options {
 	display: flex;

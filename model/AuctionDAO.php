@@ -86,13 +86,37 @@
 			return $stmt->fetch();
 		}
 
-		public function getNewestAuctionCards($limit = null) {
+		public function getSearchedAuctionCards($searchString, $limit = 12, $offset = 0) {
+			$query = $this->baseSelectCardQuery;
+
+			
+			$searchQuery = "%" . strtolower($searchString) . "%";
+			$query .= "
+				and concat(lower(stamp.description), lower(stamp.title)) like :search";
+
+			$query .= "
+				order by timeStart DESC";
+
+			// Limiter les retours.
+			$query .= "
+				limit $offset, $limit";
+			
+			$stmt = $this->prepareStmt($query);
+
+			if(!$stmt->execute([":search" => $searchQuery])) {
+				return false;
+			}			
+			
+			return $stmt->fetchAll();		
+		}
+
+		public function getNewestAuctionCards($limit = 12, $offset = 0) {
 			$query = $this->baseSelectCardQuery;
 
 			$query .= " order by timeStart DESC";
 
 			if($limit)
-				$query .= " limit $limit";
+				$query .= " limit $offset, $limit";
 			
 			$stmt = $this->prepareStmt($query);
 

@@ -55,7 +55,7 @@ select {
 	width: 100%;
 }
 
-input[type="checkbox"] {
+.form-auction input[type="checkbox"] {
 	transform: scale(2);
 }
 
