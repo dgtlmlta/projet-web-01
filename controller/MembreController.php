@@ -15,19 +15,21 @@
 			
 			$userDAO = new UserDAO();
 			
-			if($user = $userDAO->validateUser($_POST["username"], $_POST["password"])) {
-				SessionManager::initSession($user);
-				
-				if(empty($_SESSION["referer"]))
-					FileManager::redirect();
-				
-				$ref = $_SESSION["referer"];
-				unset($_SESSION["referer"]);
-				FileManager::redirect(ltrim($ref, "/"));
-				
-			} else {
+			if(!$user = $userDAO->validateUser($_POST["username"], $_POST["password"])) {
 				echo "Nope";
+				return;
 			}
+
+			SessionManager::initSession($user);
+				
+			if(empty($_SESSION["referer"])) {
+				FileManager::redirect();
+				return;
+			}
+			
+			$ref = $_SESSION["referer"];
+			unset($_SESSION["referer"]);
+			FileManager::redirect($ref);
 		}
 
 		public function inscription() {
@@ -67,7 +69,7 @@
 				);				
 			}
 
-			FileManager::redirect("authentification");
+			FileManager::redirect("/membre/authentification");
 		}
 
 		public function deconnexion() {

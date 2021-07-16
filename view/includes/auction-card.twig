@@ -33,8 +33,7 @@
 		<div class="bidding-properties">
 			<div class="current-bid">
 				<span>Mise courante : </span>
-				{% set bid = auction.highestBid ?: auction.startPrice %}
-				<span class="bid">{{ bid|number_format(2, ",") }} $CA</span>
+				<span class="bid">{{ auction.highestBid|number_format(2, ",") }} $CA</span>
 			</div>
 		</div>
 

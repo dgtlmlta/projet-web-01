@@ -11,7 +11,7 @@
 		public function formulaire() {
 			// Clause gardienne.			
 			if(!SessionManager::isMember()) {
-				FileManager::redirect("authentification");
+				FileManager::redirect("/authentification");
 				exit();
 			}
 
@@ -27,7 +27,7 @@
 
 					// Items
 					"conditions" => $conditionDAO->selectAll(),
-					"gums" => $gumDAO->selectAll(),
+					"gums"		 => $gumDAO->selectAll(),
 					"centerings" => $centeringDAO->selectAll()
 				]
 			);
@@ -36,7 +36,7 @@
 		public function enregistrer() {
 			// Clause gardienne.
 			if(!SessionManager::canEditAuctions()) {
-				FileManager::redirect("authentification");
+				FileManager::redirect("/authentification");
 				exit();
 			}
 
@@ -79,7 +79,7 @@
 				die();
 			}
 
-			FileManager::redirect("enchere/fiche/$auctionLastInsertedId");						
+			FileManager::redirect("/enchere/fiche/$auctionLastInsertedId");						
 		}
 
 		private function extractStampColumnsFromData($data) {
@@ -128,15 +128,20 @@
 			$auctionDAO = new AuctionDAO();
 			$bidDAO = new BidDAO();
 
+			$queryOptions = [
+				"limit" => 4
+			];
+
 			return TwigController::render(
 				"enchere-details",
 				[
 					// Textes
 					
 					// Items
-					"auction" => $auctionDAO->getAuctionById($id),
-					"highestBids" => $bidDAO->getHighestBidsByAuctionId($id, 5),
-					"auctions" => $auctionDAO->getNewestAuctionCards(4)
+					"canSubmitBid" 	=> SessionManager::isMember() && !SessionManager::isAuctionCreator($id),
+					"auction" 		=> $auctionDAO->getAuctionById($id),
+					"highestBids"	=> $bidDAO->getHighestBidsByAuctionId($id, 5),
+					"auctions" 		=> $auctionDAO->getNewestAuctionCards($queryOptions)
 				]
 			);
 		}

@@ -33,9 +33,21 @@
 		static public function isMember() {
 			return self::isLoggedIn() && $_SESSION["roleId"] == self::MEMBER_ID;
 		}
+
+		static public function canBidOnAuction($auctionId) {
+			return self::isMember() && !self::isAuctionCreator($auctionId);
+		}
 		
 		static public function canEditAuctions() {
 			return self::isLoggedIn() && in_array($_SESSION["roleId"], self::$auctionEditors);
+		}
+
+		static public function isAuctionCreator($auctionId) {
+			FileManager::model("AuctionDAO");
+
+			$auctionDAO = new AuctionDAO();
+
+			return $_SESSION["userId"] == $auctionDAO->getAuctionCreatorId($auctionId);
 		}
 
 	}

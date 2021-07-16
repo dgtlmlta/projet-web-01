@@ -8,7 +8,6 @@
 	{{ parent() }}
 	<link rel="stylesheet" href="/styles/catalog.css">
 	<link rel="stylesheet" media="screen and (max-width: 990px)" href="/styles/catalog-to-990px.css">
-	<link rel="stylesheet" media="screen and (max-width: 540px)" href="/styles/catalog-to-540px.css">	
 {% endblock %}
 
 
@@ -23,14 +22,14 @@
 		<svg class="separator" width="16" height="16">
 			<use href="/assets/img/down-arrow.svg#arrow" />
 		</svg>
-		{% if breadcrumb %}
-		<a href="/catalogue">Catalogue des enchères</a>
+		{% if searchString %}
+		<a class="text-link" href="/catalogue">Catalogue des enchères</a>
 
 		<svg class="separator" width="16" height="16">
 			<use href="/assets/img/down-arrow.svg#arrow" />
 		</svg>
 
-		<span aria-current="page">{{ breadcrumb }}</span>
+		<span aria-current="page">Recherche : "{{ searchString }}"</span>
 		{% else %}
 		<span aria-current="page">Catalogue des enchères</span>
 		{% endif %}
@@ -97,7 +96,7 @@
 				{% if auctions is not empty %}
 					{% include "@inc/card-grid.twig" %}	
 				{% else %}
-				<span>Aucun résultats correspondant à votre recherche "{{ searchString }}".</span>
+				<span>Aucun résultat{% if searchString %} correspondant à votre recherche "{{ searchString }}"{% endif %}.</span>
 				{% endif %}				
 			</div>
 			<!-- /grille de cartes -->

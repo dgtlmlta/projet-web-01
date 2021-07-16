@@ -29,7 +29,11 @@
 		}
 		
 		public function index() {
-			$this->vars["auctions"] = $this->auctionDAO->getNewestAuctionCards(6);
+			$queryOptions = [
+				"limit" => 6
+			];
+
+			$this->vars["auctions"] = $this->auctionDAO->getNewestAuctionCards($queryOptions);
 
 			return $this->getCatalogTemplate();
 		}
@@ -38,8 +42,23 @@
 			$decodedSearchString = urldecode($searchString);
 
 			$this->vars["auctions"] = $this->auctionDAO->getSearchedAuctionCards($decodedSearchString);
-			$this->vars["breadcrumb"] = "Recherche : $decodedSearchString";
 			$this->vars["searchString"] = $decodedSearchString;
+
+			return $this->getCatalogTemplate();
+		}
+
+		public function pays($countryString) {
+			$decodedCountryString = urldecode($countryString);
+			
+			$this->vars["auctions"] = $this->auctionDAO->getAuctionCardsByCountry($decodedCountryString);
+
+			return $this->getCatalogTemplate();
+		}
+
+		public function annee($yearString) {
+			$decodedYearString = urldecode($yearString);
+			
+			$this->vars["auctions"] = $this->auctionDAO->getAuctionCardsByYear($decodedYearString);
 
 			return $this->getCatalogTemplate();
 		}

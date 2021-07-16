@@ -12,15 +12,19 @@ export default class SearcBoxApp {
 
 	initButton = () => {
 		this.button.addEventListener('click', (e) => {
-			window.location = `${this.baseUrl}${encodeURIComponent(this.input.value)}`;
+			this.routeSearch(this.input.value);
 		});
 	}
 
 	initEnterKey = () => {
 		this.input.addEventListener('keypress', (e) => {
 			if(e.key == "Enter") {
-				window.location = `${this.baseUrl}${encodeURIComponent(this.input.value)}`;
+				this.routeSearch(this.input.value);
 			}
 		});
+	}
+
+	routeSearch = ($searchString) => {
+		window.location = `${this.baseUrl}${encodeURIComponent($searchString)}`;
 	}
 }

@@ -15,7 +15,7 @@
 			<div>
 				<dt>Pays</dt>
 				<dd>
-					<a class="text-link" href="/catalogue/pays/{{ auction.stampCountry|lower|url_encode }}">{{ auction.stampCountry }}</a>
+					<a class="text-link" href="/catalogue/pays/{{ auction.stampCountry|lower|url_encode }}">{{ auction.stampCountry|capitalize }}</a>
 				</dd>
 			</div>
 			
@@ -49,7 +49,7 @@
 			<div>
 				<dt>Couleur</dt>
 				<dd>
-					<a class="text-link" href="/catalogue/couleur/{{ auction.stampColor }}">{{ auction.stampColor|capitalize }}</a>
+					<a class="text-link" href="/catalogue/couleur/{{ auction.stampColor|lower|url_encode }}">{{ auction.stampColor|capitalize }}</a>
 				</dd>
 			</div>
 

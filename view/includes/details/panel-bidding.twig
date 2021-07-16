@@ -26,15 +26,24 @@
 	<div class="current-bid">
 		<span>Mise courante&nbsp;:</span>
 		{% set currentBid = highestBids[0].amount ?: auction.startPrice %}
-		<span class="bid">{{ currentBid|number_format(2, ",") }}
-			$CA</span>
+		<span class="bid">{{ currentBid|number_format(2, ",") }}$CA</span>
 	</div>
 
-	<form class="place-bid" name="biddingForm">
+	<form class="place-bid {% if not canSubmitBid %} disabled-dimmed{% endif %}" name="biddingForm" data-auction-id="{{ auction.auctionId }}">
 		<label for="inputBid">Votre mise&nbsp;:</label>
 		<div class="input-field">
-			<input id="inputBid" type="number" name="bidAmount" min="{{ currentBid }}" required>
-			<button class="place-your-bid" name="submitBid" type="button" data-auction-id="{{ auction.auctionId }}">Placez votre mise</button>
+			<input 
+				id="inputBid"
+				type="number"
+				name="bidAmount"
+				min="{{ currentBid }}"
+				required
+				{% if not canSubmitBid %} disabled{% endif %}>
+			<button 
+				class="place-your-bid"
+				name="submitBid"
+				type="button"
+				{% if not canSubmitBid %} disabled{% endif %}>Placez votre mise</button>
 		</div>
 	</form>
 

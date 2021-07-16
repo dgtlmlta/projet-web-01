@@ -67,6 +67,10 @@ summary {
 	font-style: italic;
 }
 
+.disabled-dimmed {
+	opacity: 0.5;
+}
+
 
 /* Liens et boutons */
 a.text-link {

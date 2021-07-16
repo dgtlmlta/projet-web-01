@@ -23,8 +23,8 @@
 			return require_once self::$libPath . $page. self::$extension;
 		}
 		
-		static function redirect($url = null) {
-			header("Location: /" . $url);
+		static function redirect($url = "/") {
+			header("Location: $url");
 		}
 
 		static function storeImage($img, $stampId) {

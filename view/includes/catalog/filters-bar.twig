@@ -1,7 +1,7 @@
 <div class="filters-bar">
 	<!-- <h2>Filtres</h2> -->
 
-	<form name="filters" action="#" class="flow-content">
+	<form name="filters" class="flow-content">
 		<fieldset>
 			<details>
 				<summary>Condition</summary>
@@ -11,7 +11,7 @@
 
 					{% for stampCondition in stampConditions %}
 					<label title="{{ stampCondition.description }}">
-						<input name="stampConditions[]" type="checkbox" value="{{ stampCondition.id }}">
+						<input name="stampCondition[]" type="checkbox" value="{{ stampCondition.id }}">
 						<span>{{ stampCondition.name }}</span>
 					</label>
 					{% endfor %}
@@ -26,7 +26,7 @@
 				<div class="inputs">
 					{% for centeringCondition in centeringConditions %}
 					<label title="{{ centeringCondition.description }}">
-						<input name="centeringConditions[]" type="checkbox" value="{{ centeringCondition.id }}">
+						<input name="centeringCondition[]" type="checkbox" value="{{ centeringCondition.id }}">
 						<span>{{ centeringCondition.name }}</span>
 					</label>
 					{% endfor %}
@@ -41,7 +41,7 @@
 				<div class="inputs">
 					{% for gumCondition in gumConditions %}
 					<label title="{{ gumCondition.description }}">
-						<input name="gumConditions[]" type="checkbox" value="{{ gumCondition.id }}">
+						<input name="gumCondition[]" type="checkbox" value="{{ gumCondition.id }}">
 						<span>{{ gumCondition.name }}</span>
 					</label>
 					{% endfor %}
@@ -51,19 +51,17 @@
 
 		<fieldset>
 			<details>
-				<summary>
-					Prix
-				</summary>
+				<summary>Prix</summary>
 
 				<div class="inputs">
 					<label>
 						Montant minimum :
-						<input type="number">
+						<input name="minAmount" type="number">
 					</label>
 
 					<label>
 						Montant maximum
-						<input type="number">
+						<input name="maxAmount" type="number">
 					</label>
 				</div>
 			</details>
@@ -71,9 +69,7 @@
 
 		<fieldset>
 			<details>
-				<summary>
-					Thème
-				</summary>
+				<summary>Thème</summary>
 
 				<div class="inputs">
 					<label>

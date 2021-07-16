@@ -10,7 +10,7 @@
 	
 	require_once __DIR__ . '/lib/FileManager.php';
 	require_once __DIR__ . '/vendor/autoload.php';
-	
+
 	FileManager::controller("TwigController");
 
 	FileManager::lib("SessionManager");
@@ -30,14 +30,19 @@
 	// $logDAO = new LogDAO();
 	// $logDAO->storeAccessLog($_SERVER["REQUEST_URI"], $_SERVER["REMOTE_ADDR"], $uid);
 
+	$path = ($_SERVER["QUERY_STRING"] != "") ?
+		explode("?", $_SERVER["REQUEST_URI"])[0] :
+		$_SERVER["REQUEST_URI"];
+
 	//recuperer le chemin (URL) et mettre dans un tableau
-	$url = (isset($_SERVER["REQUEST_URI"]) && $_SERVER["REQUEST_URI"] != "/") ?
-		explode('/', ltrim($_SERVER["REQUEST_URI"], "/")) :
+	$url = ($path != "/") ?
+		explode('/', ltrim($path, "/")) :
 		"/";
 
 	/* $url = (explode('/', $_SERVER["REQUEST_URI"])[0] != "") ?
 		explode('/', $slug) :
-		"/"; */
+		"/";
+	*/
 	
 	// Pages à ne pas inclure comme referer
 	$noref = [
@@ -49,27 +54,31 @@
 		FileManager::model("AuctionDAO");
 
 		$auctionDAO = new AuctionDAO();
-
+		$queryOptions = [
+			"limit" => 3
+		];
+		
 		echo TwigController::render(
 			"index",
 			[
-				"auctions" => $auctionDAO->getNewestAuctionCards(3)
+				"auctions" => $auctionDAO->getNewestAuctionCards($queryOptions)
 			]
 		);
 		exit();
 	}
+
 	if(!in_array($url[0], $noref)) {
 		$_SESSION["referer"] = $_SERVER["REQUEST_URI"];
 	}
-
-	$requestUrl = $url[0];
 	
+	$requestUrl = $url[0];
+
 	//recuperer le controleur
 	$controllerPath = __DIR__ . "/controller/" . ucfirst($requestUrl) . "Controller.php";
 
 	
 	if(!file_exists($controllerPath)) {
-		FileManager::redirect();
+		// FileManager::redirect();
 		die();
 	}
 	
@@ -98,5 +107,5 @@
 		
 	$id = $url[2];
 
-	echo $controller->$method($id);				
+	echo $controller->$method($id);
 ?>

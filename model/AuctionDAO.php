@@ -2,19 +2,28 @@
 
 	namespace Stampee;
 
+	FileManager::lib("FilterHandler");
+
 	class AuctionDAO extends Gateway {
-		protected $table = "auction";		
+		protected $table = "auction";
+
+		private $currentQuery = "";
+		private $currentValues = [];
+		private $currentQueryOptions = [];
+		private $defaultQueryOptions = [];
+		private $filterHandler;
+		
+
 		private $baseSelectCardQuery = 
 			"SELECT 
 				auction.id as auctionId,
 				auction.timeStart,
 				auction.timeEnd,
 				auction.sellerId,
-				auction.startPrice,
 				stamp.title,
 				stamp.description,
 				stampImage.url as imageUrl,
-				maxBid.highestBid
+				coalesce(maxBid.highestBid, auction.startPrice) as highestBid
 			from auction
 			left join (
 				select
@@ -30,7 +39,7 @@
 				and timeStart < now()
 				and timeEnd > now()";
 
-			private $baseSelectDetailsQuery = 
+		private $baseSelectDetailsQuery = 
 			"SELECT 
 				auction.id as auctionId,
 				auction.timeStart,
@@ -73,6 +82,18 @@
 				on maxBid.auctionId = auction.id
 				join user on user.id = auction.sellerId */
 
+		public function __construct() {
+			parent::__construct();
+
+			$this->filterHandler = new FilterHandler();
+			$this->defaultQueryOptions = [
+				"limit"				=> 12,
+				"offset"			=> 0,
+				"orderBy"			=> "timeStart",
+				"orderDirection"	=> "desc"
+			];
+		}
+
 		public function getAuctionById($id) {
 			$stmt = $this->prepareStmt( 
 				"$this->baseSelectDetailsQuery
@@ -86,47 +107,127 @@
 			return $stmt->fetch();
 		}
 
-		public function getSearchedAuctionCards($searchString, $limit = 12, $offset = 0) {
-			$query = $this->baseSelectCardQuery;
+		public function getNewestAuctionCards($options = [
+			"orderBy" => "startDate",
+			"orderDirection" => "desc"]) {
+				$this->initCurrentQuery($options);
+				$this->appendCurrentOptions();
 
+				return $this->runQuery();
+			}
+
+		public function getSearchedAuctionCards($searchString, $options = []) {
+			$this->initCurrentQuery($options);
+
+			if(empty($searchString)) {
+				return;				
+			}
+
+			$this->handleSearch($searchString);
+			$this->appendCurrentOptions();
 			
-			$searchQuery = "%" . strtolower($searchString) . "%";
-			$query .= "
-				and concat(lower(stamp.description), lower(stamp.title)) like :search";
-
-			$query .= "
-				order by timeStart DESC";
-
-			// Limiter les retours.
-			$query .= "
-				limit $offset, $limit";
-			
-			$stmt = $this->prepareStmt($query);
-
-			if(!$stmt->execute([":search" => $searchQuery])) {
-				return false;
-			}			
-			
-			return $stmt->fetchAll();		
+			return $this->runQuery();
 		}
 
-		public function getNewestAuctionCards($limit = 12, $offset = 0) {
-			$query = $this->baseSelectCardQuery;
+		public function getAuctionCardsByCountry($countryString, $options = []) {
+			$this->initCurrentQuery($options);
 
-			$query .= " order by timeStart DESC";
+			if(empty($countryString)) {
+				return;
+			}
 
-			if($limit)
-				$query .= " limit $offset, $limit";
-			
-			$stmt = $this->prepareStmt($query);
+			return $this	->handleCategory("country", $countryString)
+							->appendCurrentOptions()
+							->runQuery();			
+		}
 
-			if(!$stmt->execute()) 
-				return false;
-						
-			
-			return $stmt->fetchAll();		
+		public function getAuctionCardsByYear($yearString, $options = []) {
+			$this->initCurrentQuery($options);
+
+			if(empty($yearString) || !is_numeric($yearString)) {
+				echo $yearString;
+				exit();
+			}
+
+			return $this	->handleNumericCategory("year", "=", $yearString)
+							->appendCurrentOptions()
+							->runQuery();			
+		}
+
+		private function initCurrentQuery($options) {
+			$this->currentQueryOptions = array_merge($this->defaultQueryOptions, $options);
+
+			$this->currentQuery = $this->baseSelectCardQuery;		
+
+			if(!empty($_GET)) {
+				$this->handleFilters();
+			}
+		}
+
+		private function appendCurrentOptions() {
+			$this->currentQuery .= "
+				order by {$this->currentQueryOptions["orderBy"]} {$this->currentQueryOptions["orderDirection"]}
+				limit {$this->currentQueryOptions["offset"]}, {$this->currentQueryOptions["limit"]}";
+
+			return $this;
 		}
 		
+		private function handleFilters() {
+			extract($this->filterHandler->handleUserFilters($_GET));
+
+			$this->currentQuery .= $filterQueryString;
+			$this->currentValues = array_merge($this->currentValues, $filterValues);
+
+			return $this;
+		}
+
+		private function handleSearch($searchString) {
+			$searchQuery = "%" . strtolower($searchString) . "%";
+			$this->currentQuery .= "
+				and concat(lower(stamp.description), lower(stamp.title), lower(stamp.country), lower(stamp.year)) like :search";
+			$this->currentValues[":search"] = $searchQuery;
+
+			return $this;
+		}
+
+		private function handleCategory($category, $value) {
+			$this->currentQuery .= "
+				and lower(stamp.{$category}) like :category";
+			$this->currentValues[":category"] = $value;
+
+			return $this;
+		}
+
+		private function handleNumericCategory($category, $comparator, $value) {
+			$this->currentQuery .= "
+				and $category $comparator :$category";
+			$this->currentValues[":$category"] = $value;
+
+			return $this;
+		}
+
+		private function runQuery() {
+			$stmt = $this->prepareStmt($this->currentQuery);
+
+			if(!$stmt->execute($this->currentValues))
+				return false;						
+			
+			return $stmt->fetchAll();
+		}
+
+		public function getAuctionCreatorId($auctionId) {
+			$stmt = $this->prepareStmt( 
+				"SELECT auction.sellerId as sellerId
+				from auction
+				where auction.id = :id"
+			);
+			
+			if(!$stmt->execute([":id" => $auctionId]))
+				return false;
+			
+			
+			return $stmt->fetch()->sellerId;
+		}
 	}
 
 ?>

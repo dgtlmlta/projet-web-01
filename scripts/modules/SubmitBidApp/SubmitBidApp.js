@@ -2,37 +2,58 @@ export default class SubmitBidApp {
 	constructor(validator, form, bidDAO, uiManager) {
 		this.ui = uiManager;
 		this.validator = validator;
+		this.formElement = form;
+		this.auctionId = form.dataset.auctionId;
 		this.bidInput = form.bidAmount;
-		this.submitButton = form.submitBid;
+		this.placeBidButton = form.submitBid;
 		this.bidDAO = bidDAO;
 
-		this.initFormPlaceBidButton(this.submitButton);
+		this.initPlaceBidForm();
 	}
 
-	initFormPlaceBidButton = (button) => {
-		button.addEventListener('click', (e) => {
-			const
-				auctionId = e.target.dataset.auctionId;
-			
-			if(!this.bidInput.reportValidity()) {
-				console.log("trop bas");
+	initPlaceBidForm = () => {
+		this.initPlaceBidButton();
+		this.initPlaceBidInput();
+	}
+
+	initPlaceBidButton = () => {
+		this.placeBidButton.addEventListener('click', (e) => {
+			this.handleBidSubmit();
+		});
+	}
+
+	initPlaceBidInput = () => {
+		this.bidInput.addEventListener('keypress', (e) => {
+			if(e.key != "Enter") {
 				return;
 			}
 
-			const bidAmount = this.bidInput.value
+			e.preventDefault();
 
-			this.bidDAO.placeBid(auctionId, bidAmount)
-				.then(data => {
-					if(data.status !== "success") {
-						throw new Error(data.message);
-					}
-
-					this.confirmBid(bidAmount);
-				})
-				.catch(error => {
-					this.handleBidInsertError(error.message);
-				});
+			this.handleBidSubmit();
 		});
+
+	}
+
+	handleBidSubmit = () => {
+		if(!this.bidInput.reportValidity()) {
+			return;
+		}
+
+		const bidAmount = this.bidInput.value
+
+		this.bidDAO.placeBid(this.auctionId, bidAmount)
+			.then(data => {
+				if(data.status !== "success") {
+					throw new Error(data.message);
+				}
+
+				this.confirmBid(bidAmount);
+			})
+			.catch(error => {
+				this.handleBidInsertError(error.message);
+			});
+
 	}
 
 	confirmBid = (newAmount) => {
